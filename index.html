@@ -1,1 +1,307 @@
-test
+import React, { useState, useEffect } from 'react';
+import { ArrowDown, ExternalLink, ArrowRight, Mail } from 'lucide-react';
+
+const PathC = () => (
+  <path d="M111.47,9.82v30.08c-14.25-9.5-25.97-13.3-39.58-13.3-28.18,0-43.07,23.44-43.07,47.18,0,20.27,10.45,47.5,48.45,47.5,14.88,0,26.28-4.44,37.37-9.5v27.87c-13.62,5.38-27.55,8.23-41.48,8.23C18.37,147.89,0,106.72,0,76,0,28.82,29.45,0,69.98,0c13.62,0,25.33,2.53,41.48,9.82Z"/>
+);
+
+const LettersOnizm = ({ isExpanded }) => {
+  const letters = [
+    { id: 'o', path: <path d="M314.11,74.09c0,46.99-38.39,66.76-69.05,66.76-45.56,0-68.48-35.24-68.48-65.9,0-38.39,26.93-67.91,69.34-67.91,38.68,0,68.19,26.93,68.19,67.05ZM202.65,74.09c0,27.51,18.62,43.83,42.98,43.83s42.4-18.62,42.4-44.12c0-30.37-21.49-43.83-43.84-43.83-23.49,0-41.54,16.9-41.54,44.12Z"/>, delay: 500 },
+    { id: 'n', path: <path d="M487.9,64.55v76.29h-27.37v-75.68c0-28.6-13.53-35.36-28.29-35.36-12.61,0-24.91,7.38-33.21,19.37v91.67h-27.37V9.81h27.37v17.53c12.3-14.15,29.52-20.3,42.13-20.3,29.52,0,46.74,20.91,46.74,57.51Z"/>, delay: 650 },
+    { id: 'i', path: <g><path d="M586.53,15.99c0,8.61-7.38,16.3-16.3,16.3s-15.99-8.3-15.99-16.3,6.77-15.99,15.99-15.99,16.3,7.38,16.3,15.99Z"/><rect x="556.7" y="55.1" width="27.37" height="85.75"/></g>, delay: 800 },
+    { id: 'z', path: <path d="M766.82,7.04v.89l-68.95,108.47h69.53v24.44h-114.52v-.89l68.36-108.17h-66.03V7.04h111.61Z"/>, delay: 950 },
+    { id: 'm', path: <path d="M928.37,30.71c16.95-16.94,27.76-23.66,43.24-23.66,28.63,0,43.82,19.28,43.82,51.42v82.38h-25.71V60.5c0-20.16-9.93-31.26-27.17-31.26-9.35,0-20.74,5.84-29.51,16.36v95.24h-25.71V62.26c0-23.08-8.18-33.3-25.71-33.3-12.57,0-22.2,6.43-30.97,16.65v95.24h-25.71V9.67h25.71v17.24c13.73-14.02,24.83-19.87,39.15-19.87,15.77,0,30.38,7.01,38.56,23.66Z"/>, delay: 1100 }
+  ];
+
+  return (
+    <>
+      {letters.map((l) => (
+        <g 
+          key={l.id}
+          className={`transition-all duration-[1000ms] ease-custom ${isExpanded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-[20px]'}`}
+          style={{ transitionDelay: `${l.delay}ms` }}
+        >
+          {l.path}
+        </g>
+      ))}
+    </>
+  );
+};
+
+const PathUnderbar = (props) => (
+  <path {...props} d="M1200,122.15v18.7h-122.62v-18.7h122.62Z"/>
+);
+
+const App = () => {
+  const [loaded, setLoaded] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Lato:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;500&family=Space+Mono&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+    
+    setTimeout(() => setLoaded(true), 100);
+
+    setTimeout(() => setExpanded(true), 2200);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#F7F7F7] text-[#2D2D2D] selection:bg-[#2D2D2D] selection:text-[#F7F7F7] overflow-x-hidden relative">
+      
+      <nav className="fixed top-0 w-full p-8 md:p-12 flex justify-between items-center z-40 mix-blend-multiply bg-gradient-to-b from-[#F7F7F7]/90 to-transparent backdrop-blur-[1px]">
+        <a 
+          href="#" 
+          className="hover:opacity-50 transition-opacity"
+          aria-label="Home"
+        >
+          <svg 
+            viewBox="0 0 1200 147.89"
+            className="h-3 md:h-4 w-auto fill-[#2D2D2D]"
+          >
+            <PathC />
+            <g>
+               <path d="M314.11,74.09c0,46.99-38.39,66.76-69.05,66.76-45.56,0-68.48-35.24-68.48-65.9,0-38.39,26.93-67.91,69.34-67.91,38.68,0,68.19,26.93,68.19,67.05ZM202.65,74.09c0,27.51,18.62,43.83,42.98,43.83s42.4-18.62,42.4-44.12c0-30.37-21.49-43.83-43.84-43.83-23.49,0-41.54,16.9-41.54,44.12Z"/>
+               <path d="M487.9,64.55v76.29h-27.37v-75.68c0-28.6-13.53-35.36-28.29-35.36-12.61,0-24.91,7.38-33.21,19.37v91.67h-27.37V9.81h27.37v17.53c12.3-14.15,29.52-20.3,42.13-20.3,29.52,0,46.74,20.91,46.74,57.51Z"/>
+               <g><path d="M586.53,15.99c0,8.61-7.38,16.3-16.3,16.3s-15.99-8.3-15.99-16.3,6.77-15.99,15.99-15.99,16.3,7.38,16.3,15.99Z"/><rect x="556.7" y="55.1" width="27.37" height="85.75"/></g>
+               <path d="M766.82,7.04v.89l-68.95,108.47h69.53v24.44h-114.52v-.89l68.36-108.17h-66.03V7.04h111.61Z"/>
+               <path d="M928.37,30.71c16.95-16.94,27.76-23.66,43.24-23.66,28.63,0,43.82,19.28,43.82,51.42v82.38h-25.71V60.5c0-20.16-9.93-31.26-27.17-31.26-9.35,0-20.74,5.84-29.51,16.36v95.24h-25.71V62.26c0-23.08-8.18-33.3-25.71-33.3-12.57,0-22.2,6.43-30.97,16.65v95.24h-25.71V9.67h25.71v17.24c13.73-14.02,24.83-19.87,39.15-19.87,15.77,0,30.38,7.01,38.56,23.66Z"/>
+            </g>
+            <PathUnderbar />
+          </svg>
+        </a>
+        <div className="flex gap-8 font-mono text-[10px] tracking-widest uppercase">
+          {['Works', 'Services', 'Contact'].map((item, index) => (
+            <a 
+              key={item} 
+              href={`#${item.toLowerCase()}`}
+              className="hover:line-through decoration-[#2D2D2D] transition-all"
+            >
+              0{index + 1} / {item}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <section className="h-screen w-full flex flex-col justify-center items-center relative px-6">
+        <div className={`w-full max-w-[360px] transition-all duration-[2000ms] ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          
+          <div className="w-full mb-8">
+            <svg 
+              id="main-logo" 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 1200 147.89"
+              className="w-full h-auto fill-[#2D2D2D] overflow-visible"
+              aria-label="conizm_"
+            >
+              <g 
+                className="transition-transform duration-[1500ms] ease-custom"
+                style={{ transform: expanded ? 'translateX(0)' : 'translateX(470px)' }}
+              >
+                <PathC />
+              </g>
+
+              <LettersOnizm isExpanded={expanded} />
+
+              <g
+                className="transition-transform duration-[1500ms] ease-custom"
+                style={{ transform: expanded ? 'translateX(0)' : 'translateX(-470px)' }}
+              >
+                <PathUnderbar id="hero-underbar" />
+              </g>
+            </svg>
+          </div>
+
+          <p className={`font-serif text-xs md:text-sm text-center opacity-60 font-light tracking-[0.2em] transition-opacity duration-[2000ms] delay-1000 ${expanded ? 'opacity-60' : 'opacity-0'}`}>
+            crafting the invisible.
+          </p>
+        </div>
+        
+        <div className="absolute bottom-12 animate-bounce opacity-40">
+          <ArrowDown size={14} strokeWidth={1} />
+        </div>
+      </section>
+
+      <section id="philosophy" className="py-32 md:py-48 px-6 md:px-24 max-w-4xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-start">
+          <div className="w-full md:w-1/4 pt-2 border-t border-[#2D2D2D]">
+            <h2 className="font-mono text-[10px] uppercase tracking-widest mb-2">01 / Concept</h2>
+            <p className="font-sans text-xs font-bold tracking-widest">crafting the invisible.</p>
+          </div>
+          <div className="w-full md:w-3/4">
+            <p className="font-serif text-base md:text-lg leading-loose mb-12 text-[#2D2D2D]">
+              Deep within visible forms lies the true presence we aim to create.
+              From pixels on a screen to materials in a room. Unbound by medium, we shape the very atmosphere of the space.<br/><br/>
+              conizm_ creates not static conclusions, but designs imbued with "Ma"— the intentional pause that invites what comes next.
+              Beyond fleeting trends, we build an authentic presence that quietly harmonizes with any world.
+            </p>
+            <div className="font-jp text-xs leading-loose opacity-80 space-y-8 font-light tracking-wide">
+              <p>
+                かたちあるものの奥に、 本当につくりたい「気配」が潜んでいる。<br/>
+                画面の中のピクセルも、空間を満たす素材も。 手段にとらわれず、その場所にあるべき空気を編集する。
+              </p>
+              <p>
+                conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間（ま）」のあるデザイン。
+                流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="py-24 px-6 md:px-24 bg-[#EAEAEA]">
+        <div className="max-w-4xl mx-auto">
+           <div className="mb-16 pt-2 border-t border-[#2D2D2D]">
+              <h2 className="font-mono text-[10px] uppercase tracking-widest">02 / Domains</h2>
+           </div>
+           
+           <div className="grid grid-cols-1 gap-12">
+             {[
+               { title: "Application Development", desc: "Webアプリケーション開発 / UI・UX設計" },
+               { title: "Graphic Design", desc: "パンフレット / ロゴ / ブランディングツール" },
+               { title: "Interior Coordination", desc: "空間スタイリング / 家具選定 / ディスプレイ" }
+             ].map((service, i) => (
+               <div key={i} className="group border-b border-[#2D2D2D]/20 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end hover:opacity-60 transition-opacity">
+                 <h3 className="font-sans text-xl md:text-2xl font-light tracking-tight mb-2 md:mb-0" style={{ fontFamily: '"Gill Sans Nova", "Gill Sans", "Lato", sans-serif' }}>
+                   {service.title}
+                 </h3>
+                 <p className="font-jp text-[10px] md:text-xs opacity-60 tracking-widest font-light uppercase">{service.desc}</p>
+               </div>
+             ))}
+           </div>
+        </div>
+      </section>
+
+      <section id="works" className="py-32 px-6 md:px-12">
+         <div className="max-w-6xl mx-auto mb-16 pt-2 border-t border-[#2D2D2D] flex justify-between items-end">
+           <div>
+             <h2 className="font-mono text-[10px] uppercase tracking-widest mb-2">03 / Featured Work</h2>
+           </div>
+         </div>
+
+         <div 
+           className="group cursor-pointer" 
+           onClick={() => window.open('https://conizm3.github.io/', '_blank')}
+         >
+            <div className="w-full aspect-video bg-[#cfcfcf] mb-8 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out">
+              <img 
+                src="http://conizm.github.io/images/wordrobeimage.png" 
+                alt="wordrobe" 
+                className="w-full h-full object-cover"
+              />
+              
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/5">
+                <span className="font-sans text-[#2D2D2D] text-[10px] tracking-[0.3em] border border-[#2D2D2D] px-8 py-3 bg-white/90 backdrop-blur-sm uppercase">
+                  Open App
+                </span>
+              </div>
+            </div>
+            
+            <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+              <div className="max-w-xl">
+                <h3 className="font-serif text-2xl md:text-3xl mb-4 font-normal lowercase">wordrobe</h3>
+                <p className="font-jp font-light text-xs leading-loose opacity-70 tracking-wide">
+                  あなただけの言葉のワードローブ。
+                  日々の英語と日本語を静かに蓄積し、AIがその意味を紐解く。
+                  装飾を極限まで削ぎ落とし、言葉と向き合うための「余白」をデザインした学習アプリケーション。
+                  React / TypeScript / Firebase で構築。
+                </p>
+              </div>
+              <div className="flex flex-col items-end gap-2 font-mono text-[10px] opacity-60 text-right uppercase tracking-widest">
+                <span>Web Application</span>
+                <span>2025</span>
+                <span className="flex items-center gap-1 mt-2 hover:opacity-50 cursor-pointer transition-opacity">View Case Study <ArrowRight size={10}/></span>
+              </div>
+            </div>
+         </div>
+      </section>
+
+      <section className="py-24 px-6 md:px-12 bg-[#2D2D2D] text-[#F7F7F7]">
+         <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div className="w-full md:w-1/2">
+               <img 
+                 src="https://conizm.github.io/images/moodphoto.png" 
+                 alt="Mood" 
+                 className="w-full aspect-square object-cover" 
+               />
+            </div>
+            <div className="w-full md:w-1/2">
+               <p className="font-serif text-sm md:text-base leading-loose opacity-80 mb-8 font-normal">
+                 "Not just designing the visible, but curating the atmosphere itself."<br/>
+                 "In the quiet details, we find a timeless resonance."
+               </p>
+               <p className="font-jp text-[10px] md:text-xs font-light leading-loose opacity-60 tracking-wider">
+                 作為的な装飾よりも、静謐な『間』を。<br/>
+                 声高な主張よりも、永く愛される『気配』を。<br/>
+                 デジタルの世界に、手触りのある静寂を構築します。
+               </p>
+            </div>
+         </div>
+      </section>
+
+      <footer id="contact" className="py-32 px-6 md:px-24 bg-[#F7F7F7] relative">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="font-mono text-[10px] mb-8 tracking-[0.2em] uppercase">Get In Touch</p>
+          <a 
+            href="https://forms.gle/RFT8M71pwQnvjCW1A" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mb-12 hover:opacity-50 transition-opacity"
+            aria-label="Contact Form"
+          >
+            <Mail size={32} strokeWidth={1} />
+          </a>
+          
+          <div className="flex justify-center gap-8 mb-24">
+             {['Instagram', 'X (Twitter)'].map((social) => (
+               <a 
+                 key={social} 
+                 href="#" 
+                 className="flex items-center gap-2 font-sans text-[10px] font-bold uppercase hover:underline decoration-1 underline-offset-4 tracking-widest"
+               >
+                 {social} <ExternalLink size={10} />
+               </a>
+             ))}
+          </div>
+
+          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[#2D2D2D]/20 text-[10px] font-mono opacity-40 uppercase tracking-widest">
+            <span>© {new Date().getFullYear()} conizm_</span>
+            <span>Crafting the invisible.</span>
+          </div>
+        </div>
+      </footer>
+      
+      <style>{`
+        .font-jp {
+          font-family: "Noto Sans JP", sans-serif;
+        }
+        ::selection {
+          background-color: #2D2D2D;
+          color: #F7F7F7;
+        }
+        html {
+          scroll-behavior: smooth;
+        }
+        .ease-custom {
+          transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        @keyframes fadeBlink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+        #hero-underbar {
+          animation: fadeBlink 2.5s ease-in-out infinite;
+          animation-delay: 4s;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default App;
