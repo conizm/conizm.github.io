@@ -168,7 +168,7 @@
                         かたちあるものの奥に、 本当につくりたい「気配」が潜んでいる。画面の中のピクセルも、空間を満たす素材も。 手段にとらわれず、その場所にあるべき空気を編集する。
                     </p>
                     <p>
-                        conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間」のあるデザイン。流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。
+                        conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間（ま）」のあるデザイン。流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。
                     </p>
                 </div>
             </div>
@@ -256,7 +256,7 @@
               class="inline-block mb-12 hover:opacity-50 transition-opacity"
               aria-label="Contact Form"
             >
-              <!-- Corrected Mail Icon SVG -->
+              <!-- Corrected Mail Icon SVG (From lucide-react) -->
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             </a>
             
@@ -275,9 +275,8 @@
             const closeIcon = document.getElementById('close-icon');
             const heroContent = document.getElementById('hero-content');
             
-            // --- 1. Initial Load & Hero Animation ---
+            // --- 1. Initial Load & Hero Animation (Remains the same) ---
             
-            // Logo paths and containers (using IDs defined in SVG above)
             const cGroup = document.getElementById('c-group');
             const underbarGroup = document.getElementById('underbar-group');
             const onizmLetters = [
@@ -288,21 +287,17 @@
                 { id: 'm', group: document.getElementById('m'), delay: 1100 },
             ];
 
-            // Trigger animation after fonts are likely loaded
             setTimeout(() => {
                 heroContent.classList.remove('opacity-0', 'translate-y-10');
                 heroContent.classList.add('opacity-100', 'translate-y-0');
             }, 100);
 
-            // Trigger logo expansion after 2.2 seconds
             setTimeout(() => {
-                // Expansion: C moves left, Underbar moves right
                 if (cGroup && underbarGroup) {
-                    cGroup.style.transform = 'translateX(0)'; // Left slide
-                    underbarGroup.style.transform = 'translateX(0)'; // Right slide
+                    cGroup.style.transform = 'translateX(0)';
+                    underbarGroup.style.transform = 'translateX(0)';
                 }
                 
-                // Letters fade/slide in sequentially
                 onizmLetters.forEach(item => {
                     setTimeout(() => {
                         if (item.group) {
@@ -315,23 +310,26 @@
 
             // --- 2. Mobile Menu Logic ---
 
-            menuButton.addEventListener('click', () => {
-                const isOpen = mobileMenuOverlay.classList.contains('translate-x-full');
-                
-                if (isOpen) {
-                    // Close
-                    mobileMenuOverlay.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
-                    mobileMenuOverlay.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
-                    menuIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
-                } else {
-                    // Open
-                    mobileMenuOverlay.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
-                    mobileMenuOverlay.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
-                    menuIcon.classList.add('hidden');
-                    closeIcon.classList.remove('hidden');
-                }
-            });
+            if (menuButton) {
+                menuButton.addEventListener('click', () => {
+                    const isOpen = mobileMenuOverlay.classList.contains('translate-x-0');
+                    
+                    if (isOpen) {
+                        // Close: Slide right
+                        mobileMenuOverlay.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+                        mobileMenuOverlay.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+                        menuIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                    } else {
+                        // Open: Slide left
+                        mobileMenuOverlay.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+                        mobileMenuOverlay.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+                        menuIcon.classList.add('hidden');
+                        closeIcon.classList.remove('hidden');
+                    }
+                });
+            }
+
 
             window.handleMenuClick = (event, href) => {
                 event.preventDefault();
@@ -522,6 +520,7 @@
                 const slider = document.getElementById('image-slider');
                 let touchStartX = null;
                 let touchEndX = null;
+                const minSwipeDistance = 50;
 
                 if (slider) {
                     slider.addEventListener('touchstart', (e) => {
