@@ -170,7 +170,8 @@
 
     <!-- Hero Section -->
     <section class="h-screen w-full flex flex-col justify-center items-center relative px-6">
-        <div id="hero-content" class="w-full max-w-[360px] opacity-0 translate-y-10 transition-all duration-[2000ms] ease-out mt-[-2rem] md:mt-[-3rem]">
+        <!-- Offset adjusted for visual center on both mobile (50px up) and desktop (20px up) -->
+        <div id="hero-content" class="w-full max-w-[360px] opacity-0 translate-y-10 transition-all duration-[2000ms] ease-out mt-[-5rem] md:mt-[-4.25rem]">
             
             <div class="w-[60%] md:w-full mx-auto">
                 <svg 
@@ -574,6 +575,9 @@
             const sliderContainer = document.getElementById('image-slider-container');
             if (!sliderContainer) return;
 
+            // Clear container first to prevent duplication issues in renderSlider() calls
+            sliderContainer.innerHTML = '';
+            
             let sliderHtml = `
                 <div 
                     class="w-full aspect-video bg-[#cfcfcf] mb-8 relative overflow-hidden group select-none"
@@ -605,6 +609,8 @@
                 </div>
             `;
             sliderContainer.innerHTML = sliderHtml;
+            
+            // Setup events after insertion
             setupSliderEvents();
             startAutoPlay();
         }
@@ -622,8 +628,7 @@
                     setTimeout(() => { slide.style.zIndex = 0; }, 2500); 
                 }
             });
-            // Re-render is not needed if we manage styles directly. 
-            // We just need to reset the timer.
+            // Reset the timer since a manual action occurred
             startAutoPlay();
         }
 
