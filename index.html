@@ -74,6 +74,11 @@
                 height: 7rem; /* Fixed height for desktop nav */
             }
         }
+
+        /* Crossfade transition property applied to dynamic slides */
+        .fade-transition {
+            transition: opacity 2500ms ease-in-out;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-[#F7F7F7] text-[#2D2D2D] overflow-x-hidden relative">
@@ -165,7 +170,7 @@
 
     <!-- Hero Section -->
     <section class="h-screen w-full flex flex-col justify-center items-center relative px-6">
-        <div id="hero-content" class="w-full max-w-[360px] opacity-0 translate-y-10 transition-all duration-[2000ms] ease-out">
+        <div id="hero-content" class="w-full max-w-[360px] opacity-0 translate-y-10 transition-all duration-[2000ms] ease-out mt-[-2rem] md:mt-[-3rem]">
             
             <div class="w-[60%] md:w-full mx-auto">
                 <svg 
@@ -175,7 +180,7 @@
                   class="w-full h-auto fill-[#2D2D2D] overflow-visible"
                   aria-label="conizm_"
                 >
-                    <!-- C: Starts offset right (470px) -->
+                    <!-- Logo Paths (Simplified for HTML display) -->
                     <g id="c-group" class="transition-transform duration-[1500ms] ease-custom" style="transform: translateX(470px);">
                         <path d="M111.47,9.82v30.08c-14.25-9.5-25.97-13.3-39.58-13.3-28.18,0-43.07,23.44-43.07,47.18,0,20.27,10.45,47.5,48.45,47.5,14.88,0,26.28-4.44,37.37-9.5v27.87c-13.62,5.38-27.55,8.23-41.48,8.23C18.37,147.89,0,106.72,0,76,0,28.82,29.45,0,69.98,0c13.62,0,25.33,2.53,41.48,9.82Z"/>
                     </g>
@@ -485,7 +490,8 @@
             
             if (moodEnTextEl && moodJpTextEl) {
                 // Style adjustment for mood EN text
-                moodEnTextEl.classList.add('font-jp', 'text-xs', 'leading-loose', 'opacity-70', 'tracking-wide', 'mb-0');
+                // Set to match WORK description text style: font-jp text-xs leading-loose opacity-70 tracking-wide
+                moodEnTextEl.className = 'font-jp text-xs leading-loose opacity-70 tracking-wide mb-8 font-normal md:text-base';
                 
                 if (lang === 'en') {
                     // English mode: Display only the poetic English text
@@ -576,7 +582,13 @@
                     <div class="relative w-full h-full" id="slide-images">
                         ${workImages.map((src, index) => `
                             <div 
-                                class="absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out grayscale ${index === currentSlideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}"
+                                class="absolute inset-0 w-full h-full fade-transition grayscale"
+                                style="
+                                    opacity: ${index === currentSlideIndex ? 1 : 0};
+                                    z-index: ${index === currentSlideIndex ? 10 : 0};
+                                    /* Ensures crossfade works reliably */
+                                    transition: opacity 2500ms ease-in-out;
+                                "
                                 id="slide-${index}"
                             >
                                 <img src="${src}" alt="Work slide ${index + 1}" class="w-full h-full object-cover"/>
@@ -589,16 +601,7 @@
                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                     </button>
 
-                    <!-- Pagination Dots -->
-                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20" id="slide-dots">
-                        ${workImages.map((_, index) => `
-                            <button
-                                class="w-1.5 h-1.5 rounded-full transition-all duration-500 ${index === currentSlideIndex ? 'bg-[#2D2D2D] scale-125' : 'bg-[#2D2D2D]/40 hover:bg-[#2D2D2D]/60'}"
-                                data-slide-index="${index}"
-                                aria-label="Go to slide ${index + 1}"
-                            />
-                        `).join('')}
-                    </div>
+                    <!-- Pagination Dots (Removed) -->
                 </div>
             `;
             sliderContainer.innerHTML = sliderHtml;
@@ -608,31 +611,37 @@
 
         function goToSlide(index) {
             currentSlideIndex = index;
-            renderSlider();
+            // Manual update of opacity and z-index for crossfade
+            document.querySelectorAll('#slide-images > div').forEach((slide, i) => {
+                if (i === index) {
+                    slide.style.opacity = 1;
+                    slide.style.zIndex = 10;
+                } else {
+                    slide.style.opacity = 0;
+                    // Lower z-index immediately after fade-out starts for layer stability
+                    setTimeout(() => { slide.style.zIndex = 0; }, 2500); 
+                }
+            });
+            // Re-render is not needed if we manage styles directly. 
+            // We just need to reset the timer.
+            startAutoPlay();
         }
 
         function startAutoPlay() {
             if (autoPlayTimer) clearInterval(autoPlayTimer);
             autoPlayTimer = setInterval(() => {
                 currentSlideIndex = (currentSlideIndex + 1) % workImages.length;
-                renderSlider();
+                goToSlide(currentSlideIndex); // Use goToSlide for animation logic
             }, 6000);
         }
 
         function setupSliderEvents() {
-            document.querySelectorAll('#slide-dots button').forEach(dot => {
-                dot.addEventListener('click', (e) => {
-                    const index = parseInt(e.target.dataset.slideIndex);
-                    goToSlide(index);
-                    startAutoPlay();
-                });
-            });
-
+            // Re-attach listeners after rendering, focusing on the dynamic elements.
             const nextBtn = document.getElementById('next-slide-btn');
             if(nextBtn) {
                 nextBtn.addEventListener('click', () => {
-                    goToSlide((currentSlideIndex + 1) % workImages.length);
-                    startAutoPlay();
+                    currentSlideIndex = (currentSlideIndex + 1) % workImages.length;
+                    goToSlide(currentSlideIndex);
                 });
             }
             
@@ -655,9 +664,11 @@
                     const distance = touchStartX - touchEndX;
                     
                     if (distance > minSwipeDistance) {
-                        goToSlide((currentSlideIndex + 1) % workImages.length);
+                        currentSlideIndex = (currentSlideIndex + 1) % workImages.length;
+                        goToSlide(currentSlideIndex);
                     } else if (distance < -minSwipeDistance) {
-                        goToSlide((currentSlideIndex - 1 + workImages.length) % workImages.length);
+                        currentSlideIndex = (currentSlideIndex - 1 + workImages.length) % workImages.length;
+                        goToSlide(currentSlideIndex);
                     }
                     startAutoPlay();
                     touchStartX = null;
