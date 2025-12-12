@@ -51,37 +51,40 @@
     <!-- Mobile Menu Overlay (Hidden by default) -->
     <div 
         id="mobile-menu-overlay"
-        class="fixed top-0 right-0 w-1/2 h-[66vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-start items-center gap-5 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-xl opacity-0 translate-x-full pointer-events-none"
+        class="fixed top-0 right-0 w-1/2 h-[66vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-5 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-xl opacity-0 translate-x-full pointer-events-none"
     >
-        <a href="#philosophy" class="font-mono text-lg tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
-        <a href="#services" class="font-mono text-lg tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
-        <a href="#works" class="font-mono text-lg tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#works')">WORK</a>
-        <a href="#contact" class="font-mono text-lg tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#contact')">CONTACT</a>
+        <a href="#philosophy" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
+        <a href="#services" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
+        <a href="#works" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#works')">WORK</a>
+        <a href="#contact" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#contact')">CONTACT</a>
     </div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full p-8 md:p-12 flex justify-between items-center z-50 mix-blend-multiply bg-gradient-to-b from-[#F7F7F7]/95 to-transparent backdrop-blur-xl">
         <a 
           href="#" 
-          class="hover:opacity-50 transition-opacity z-50"
+          class="hover:opacity-50 transition-opacity z-50 md:w-auto w-full flex items-center justify-between"
           aria-label="Home"
           onclick="handleMenuClick(event, '#')"
         >
-          <svg 
-            viewBox="0 0 1200 147.89"
-            class="h-3 md:h-4 w-auto fill-[#2D2D2D]"
-          >
-             <!-- Logo Paths (Simplified for HTML display) -->
-             <path d="M111.47,9.82v30.08c-14.25-9.5-25.97-13.3-39.58-13.3-28.18,0-43.07,23.44-43.07,47.18,0,20.27,10.45,47.5,48.45,47.5,14.88,0,26.28-4.44,37.37-9.5v27.87c-13.62,5.38-27.55,8.23-41.48,8.23C18.37,147.89,0,106.72,0,76,0,28.82,29.45,0,69.98,0c13.62,0,25.33,2.53,41.48,9.82Z"/>
-             <g>
-                <path d="M314.11,74.09c0,46.99-38.39,66.76-69.05,66.76-45.56,0-68.48-35.24-68.48-65.9,0-38.39,26.93-67.91,69.34-67.91,38.68,0,68.19,26.93,68.19,67.05ZM202.65,74.09c0,27.51,18.62,43.83,42.98,43.83s42.4-18.62,42.4-44.12c0-30.37-21.49-43.83-43.84-43.83-23.49,0-41.54,16.9-41.54,44.12Z"/>
-                <path d="M487.9,64.55v76.29h-27.37v-75.68c0-28.6-13.53-35.36-28.29-35.36-12.61,0-24.91,7.38-33.21,19.37v91.67h-27.37V9.81h27.37v17.53c12.3-14.15,29.52-20.3,42.13-20.3,29.52,0,46.74,20.91,46.74,57.51Z"/>
-                <g><path d="M586.53,15.99c0,8.61-7.38,16.3-16.3,16.3s-15.99-8.3-15.99-16.3,6.77-15.99,15.99-15.99,16.3,7.38,16.3,15.99Z"/><rect x="556.7" y="55.1" width="27.37" height="85.75"/></g>
-                <path d="M766.82,7.04v.89l-68.95,108.47h69.53v24.44h-114.52v-.89l68.36-108.17h-66.03V7.04h111.61Z"/>
-                <path d="M928.37,30.71c16.95-16.94,27.76-23.66,43.24-23.66,28.63,0,43.82,19.28,43.82,51.42v82.38h-25.71V60.5c0-20.16-9.93-31.26-27.17-31.26-9.35,0-20.74,5.84-29.51,16.36v95.24h-25.71V62.26c0-23.08-8.18-33.3-25.71-33.3-12.57,0-22.2,6.43-30.97,16.65v95.24h-25.71V9.67h25.71v17.24c13.73-14.02,24.83-19.87,39.15-19.87,15.77,0,30.38,7.01,38.56,23.66Z"/>
-             </g>
-             <path d="M1200,122.15v18.7h-122.62v-18.7h122.62Z"/>
-          </svg>
+            <!-- Mobile Tap Area Overlay (Hidden on desktop) -->
+            <div class="absolute inset-0 md:hidden" onclick="handleMenuClick(event, '#')"></div>
+
+            <svg 
+                viewBox="0 0 1200 147.89"
+                class="h-3 md:h-4 w-auto fill-[#2D2D2D] relative z-20"
+            >
+                <!-- Logo Paths (Simplified for HTML display) -->
+                <path d="M111.47,9.82v30.08c-14.25-9.5-25.97-13.3-39.58-13.3-28.18,0-43.07,23.44-43.07,47.18,0,20.27,10.45,47.5,48.45,47.5,14.88,0,26.28-4.44,37.37-9.5v27.87c-13.62,5.38-27.55,8.23-41.48,8.23C18.37,147.89,0,106.72,0,76,0,28.82,29.45,0,69.98,0c13.62,0,25.33,2.53,41.48,9.82Z"/>
+                <g>
+                    <path d="M314.11,74.09c0,46.99-38.39,66.76-69.05,66.76-45.56,0-68.48-35.24-68.48-65.9,0-38.39,26.93-67.91,69.34-67.91,38.68,0,68.19,26.93,68.19,67.05ZM202.65,74.09c0,27.51,18.62,43.83,42.98,43.83s42.4-18.62,42.4-44.12c0-30.37-21.49-43.83-43.84-43.83-23.49,0-41.54,16.9-41.54,44.12Z"/>
+                    <path d="M487.9,64.55v76.29h-27.37v-75.68c0-28.6-13.53-35.36-28.29-35.36-12.61,0-24.91,7.38-33.21,19.37v91.67h-27.37V9.81h27.37v17.53c12.3-14.15,29.52-20.3,42.13-20.3,29.52,0,46.74,20.91,46.74,57.51Z"/>
+                    <g><path d="M586.53,15.99c0,8.61-7.38,16.3-16.3,16.3s-15.99-8.3-15.99-16.3,6.77-15.99,15.99-15.99,16.3,7.38,16.3,15.99Z"/><rect x="556.7" y="55.1" width="27.37" height="85.75"/></g>
+                    <path d="M766.82,7.04v.89l-68.95,108.47h69.53v24.44h-114.52v-.89l68.36-108.17h-66.03V7.04h111.61Z"/>
+                    <path d="M928.37,30.71c16.95-16.94,27.76-23.66,43.24-23.66,28.63,0,43.82,19.28,43.82,51.42v82.38h-25.71V60.5c0-20.16-9.93-31.26-27.17-31.26-9.35,0-20.74,5.84-29.51,16.36v95.24h-25.71V62.26c0-23.08-8.18-33.3-25.71-33.3-12.57,0-22.2,6.43-30.97,16.65v95.24h-25.71V9.67h25.71v17.24c13.73-14.02,24.83-19.87,39.15-19.87,15.77,0,30.38,7.01,38.56,23.66Z"/>
+                </g>
+                <path d="M1200,122.15v18.7h-122.62v-18.7h122.62Z"/>
+            </svg>
         </a>
 
         <!-- Desktop Menu -->
@@ -95,7 +98,7 @@
         <!-- Mobile Menu Button -->
         <button 
           id="mobile-menu-button"
-          class="md:hidden z-50 text-[#2D2D2D]"
+          class="md:hidden z-50 text-[#2D2D2D] relative"
           aria-label="Toggle menu"
         >
           <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
@@ -168,7 +171,7 @@
                         かたちあるものの奥に、 本当につくりたい「気配」が潜んでいる。画面の中のピクセルも、空間を満たす素材も。 手段にとらわれず、その場所にあるべき空気を編集する。
                     </p>
                     <p>
-                        conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間（ま）」のあるデザイン。流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。
+                        conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間」のあるデザイン。流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。
                     </p>
                 </div>
             </div>
@@ -256,7 +259,7 @@
               class="inline-block mb-12 hover:opacity-50 transition-opacity"
               aria-label="Contact Form"
             >
-              <!-- Corrected Mail Icon SVG (From lucide-react) -->
+              <!-- Corrected Mail Icon SVG -->
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             </a>
             
