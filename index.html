@@ -53,6 +53,27 @@
         .h-66vh {
             height: 66vh;
         }
+        /* Ensures smooth scrolling even with fixed header */
+        body {
+            padding-top: 5rem; /* Base padding to account for fixed header height */
+            margin-top: -5rem;
+        }
+        @media (min-width: 768px) {
+            body {
+                padding-top: 7rem;
+                margin-top: -7rem;
+            }
+        }
+        nav {
+            padding-top: 0;
+            padding-bottom: 0;
+            height: 5rem; /* Fixed height for mobile nav */
+        }
+        @media (min-width: 768px) {
+            nav {
+                height: 7rem; /* Fixed height for desktop nav */
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-[#F7F7F7] text-[#2D2D2D] overflow-x-hidden relative">
@@ -60,12 +81,12 @@
     <!-- Mobile Menu Overlay (Hidden by default) -->
     <div 
         id="mobile-menu-overlay"
-        class="fixed top-0 right-0 w-1/2 h-[66vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-5 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-xl opacity-0 translate-x-full pointer-events-none"
+        class="fixed top-0 right-0 w-1/2 h-[66vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-xl opacity-0 translate-x-full pointer-events-none"
     >
-        <a href="#philosophy" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
-        <a href="#services" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
-        <a href="#works" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#works')">WORK</a>
-        <a href="#contact" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#contact')">CONTACT</a>
+        <a href="#philosophy" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
+        <a href="#services" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
+        <a href="#works" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#works')">WORK</a>
+        <a href="#contact" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#contact')">CONTACT</a>
         
         <div class="flex gap-4 mt-4 font-mono text-xs opacity-60">
             <button onclick="setLanguage('ja')" id="lang-ja-mobile" class="font-bold border-b border-[#2D2D2D]">JP</button>
@@ -111,7 +132,7 @@
         
         <!-- Desktop Language Switch -->
         <div class="hidden md:flex gap-4 font-mono text-[10px] tracking-widest">
-            <button onclick="setLanguage('ja')" id="lang-ja-desktop" class="font-bold border-b border-[#2D2D2D]" data-content-key="lang_jp">JP</button>
+            <button onclick="setLanguage('ja')" id="lang-ja-desktop" class="font-bold border-b border-[#2D2D2D]">JP</button>
             <button onclick="setLanguage('en')" id="lang-en-desktop" data-content-key="lang_en">EN</button>
         </div>
 
@@ -125,6 +146,22 @@
           <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
     </nav>
+
+    <!-- Mobile Menu Overlay (Hidden by default) -->
+    <div 
+        id="mobile-menu-overlay"
+        class="fixed top-0 right-0 w-1/2 h-[66vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-xl opacity-0 translate-x-full pointer-events-none"
+    >
+        <a href="#philosophy" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
+        <a href="#services" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
+        <a href="#works" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#works')">WORK</a>
+        <a href="#contact" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#contact')">CONTACT</a>
+        
+        <div class="flex gap-4 mt-4 font-mono text-xs opacity-60">
+            <button onclick="setLanguage('ja')" id="lang-ja-mobile" class="font-bold border-b border-[#2D2D2D]">JP</button>
+            <button onclick="setLanguage('en')" id="lang-en-mobile">EN</button>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="h-screen w-full flex flex-col justify-center items-center relative px-6">
@@ -260,7 +297,7 @@
                 />
             </div>
             <div class="w-full md:w-1/2 text-right flex flex-col justify-center self-stretch">
-                <p class="font-serif text-sm md:text-base leading-loose opacity-80 mb-8 font-normal" id="mood_en_text_revive"></p>
+                <p class="font-jp text-xs leading-loose opacity-70 tracking-wide" id="mood_en_text_revive"></p>
                 <p class="font-jp font-light text-xs leading-loose opacity-70 tracking-wide" id="mood_text">
                     作為的な装飾よりも、静謐な『間』を。<br/>
                     声高な主張よりも、永く愛される『気配』を。
@@ -272,15 +309,40 @@
     <!-- Footer -->
     <footer id="contact" class="py-32 px-6 md:px-24 bg-[#F7F7F7] relative">
         <div class="max-w-3xl mx-auto text-center">
-            <p class="font-mono text-[10px] mb-8 tracking-[0.2em] uppercase" data-content-key="footer_contact">Get In Touch</p>
-            <button 
-              id="contact-button"
-              class="inline-block mb-12 hover:opacity-50 transition-opacity"
-              aria-label="Contact Form"
-            >
-              <!-- Corrected Mail Icon SVG -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            </button>
+            
+            <div class="flex justify-center gap-8 mb-12">
+                
+                <!-- Profile Icon (Opens Profile Modal) -->
+                <button
+                    id="profile-button"
+                    class="inline-block hover:opacity-50 transition-opacity"
+                    aria-label="Profile/Info"
+                    onclick="openProfileModal(event)"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </button>
+
+                <!-- Instagram Icon -->
+                <a 
+                    href="https://www.instagram.com/conizm_/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block hover:opacity-50 transition-opacity"
+                    aria-label="Instagram Link"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.5" y1="6.5" y2="6.5"/></svg>
+                </a>
+                
+                <!-- Contact Icon -->
+                <button 
+                  id="contact-button"
+                  class="inline-block hover:opacity-50 transition-opacity"
+                  aria-label="Contact Form"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </button>
+
+            </div>
             
             <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[#2D2D2D]/20 text-[10px] font-mono opacity-40 tracking-widest">
                 <span data-content-key="footer_copyright">© 2025 conizm_</span>
@@ -295,32 +357,55 @@
             <button class="absolute top-4 right-4 text-[#2D2D2D] hover:opacity-50 transition-opacity" onclick="closeContactModal()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
-            <h3 class="font-serif text-2xl mb-6 text-center text-[#2D2D2D]" id="modal-title">Contact Us</h3>
+            <h3 class="font-serif text-2xl mb-6 text-center text-[#2D2D2D] lowercase" id="modal-title">contact form</h3>
             
             <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA-UEOhUdyIVa3pNuWj0sXsExP3xXt8dkQCBiRqtLlm1EJVA/formResponse" method="POST" target="hidden_iframe">
                 
                 <div class="mb-4">
-                    <label for="entry.956780696" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70" id="modal-name-label">氏名 / Name</label>
+                    <label for="entry.956780696" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70" id="modal-name-label">NAME</label>
                     <input type="text" id="entry.956780696" name="entry.956780696" required class="w-full p-2 border border-[#2D2D2D]/30 bg-transparent font-serif text-sm focus:border-[#2D2D2D] transition-colors rounded-lg">
                 </div>
 
                 <div class="mb-4">
-                    <label for="entry.422165517" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70" id="modal-email-label">メールアドレス / Email</label>
+                    <label for="entry.422165517" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70" id="modal-email-label">EMAIL</label>
                     <input type="email" id="entry.422165517" name="entry.422165517" required class="w-full p-2 border border-[#2D2D2D]/30 bg-transparent font-serif text-sm focus:border-[#2D2D2D] transition-colors rounded-lg">
                 </div>
 
                 <div class="mb-6">
-                    <label for="entry.1033281640" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70" id="modal-message-label">お問い合わせ内容 / Message</label>
+                    <label for="entry.1033281640" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70" id="modal-message-label">MESSAGE</label>
                     <textarea id="entry.1033281640" name="entry.1033281640" rows="5" required class="w-full p-2 border border-[#2D2D2D]/30 bg-transparent font-serif text-sm focus:border-[#2D2D2D] transition-colors rounded-lg"></textarea>
                 </div>
 
                 <button type="submit" class="w-full bg-[#2D2D2D] text-[#F7F7F7] font-mono text-sm uppercase tracking-widest py-3 rounded-xl hover:opacity-90 transition-opacity" id="modal-button">
-                    送信
+                    SUBMIT
                 </button>
             </form>
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted) {alert(content[currentLang].modal_alert); closeContactModal();}"></iframe>
         </div>
     </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeProfileModal(event)">
+        <div class="bg-[#F7F7F7] p-8 md:p-12 rounded-xl shadow-2xl w-11/12 max-w-lg relative text-center" onclick="event.stopPropagation()">
+            <button class="absolute top-4 right-4 text-[#2D2D2D] hover:opacity-50 transition-opacity" onclick="closeProfileModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+            
+            <div class="flex flex-col items-center pt-6">
+                <img src="https://conizm.cc/images/icon-conizm.png" alt="Profile Photo" class="w-24 h-24 rounded-full mb-4 object-cover border border-[#2D2D2D]/20">
+                <p class="font-serif text-xl font-normal mb-1" id="profile-name">Cony</p>
+                <p class="font-jp text-sm opacity-70 mb-4" id="profile-title">Graphic & Experience Designer</p>
+                
+                <div class="mt-4 text-left w-full max-w-xs mx-auto">
+                    <p class="font-mono text-[10px] uppercase tracking-widest mb-1 opacity-70" id="profile-bg-label">Background</p>
+                    <p class="font-jp text-xs leading-loose opacity-80" id="profile-description">
+                        大学卒業後、空間デザイン事務所に勤務。その後、インハウスのグラフィックデザイナーとしての経験を経て、2023年よりフリーランス。Digital-Physical（Web, Print, and Space）を横断し、「人が心地よいと感じる」体験を設計・具現化することを目指しています。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         window.submitted = false;
@@ -332,24 +417,24 @@
                 lang_jp: 'JP', lang_en: 'EN',
                 concept_h2: '01 / Concept', concept_main: 'Crafting the invisible.',
                 concept_text_p1: 'かたちあるものの奥に、 本当につくりたい「気配」が潜んでいる。画面の中のピクセルも、空間を満たす素材も。 手段にとらわれず、その場所にあるべき空気を編集する。',
-                concept_text_p2: 'conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間（ま）」のあるデザイン。流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。',
+                concept_text_p2: 'conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間」のあるデザイン。流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。',
                 service_h2: '02 / Service',
                 service1_title: 'Interactive & Experience', service1_subtitle: 'WEBアプリケーション開発 / UI/UX設計',
-                service1_desc_h: 'AI実装によるプロトタイピングと、心地よいUI体験の設計',
+                service1_desc_h: 'AI技術を活用して、心地よいUI体験の設計を',
                 service1_desc_p: 'インテリアデザインで培った「人が快適に感じる距離感や配置」の感覚を、デジタル空間（UI/UX）に応用。AI技術をコーディングに活用することで、アイディアを迅速にアプリとして実装します。機能性だけでなく、触っていて気持ちの良い、体温のあるデジタルプロダクトを目指します。',
                 service1_list: 'WEBブラウザアプリ開発（AI実装）、UI/UXデザイン、デジタルプロトタイプ作成 etc.',
                 service2_title: 'Visual & Identity', service2_subtitle: 'ブランディングツール / サイン計画',
-                service2_desc_h: '紙媒体からサイン計画まで、ブランドの世界観を翻訳する',
-                service2_desc_p: '流行を追うのではなく、ブランドの思想が静かに伝わる「佇まい」をデザインします。名刺やパンフレットなどの手元ツールから、店舗や施設のサイン計画（案内表示）まで、空間におけるグラフィックの在り方も含めてトータルに提案します。',
+                service2_desc_h: '紙媒体〜サイン計画まで、ブランドの世界観を翻訳',
+                service2_desc_p: '流行に左右されない、ブランドの空気感や思想が伝わる「佇まい」をデザインします。名刺やパンフレットなどの手元ツールから、店舗や施設のサイン計画（案内表示）まで、空間におけるグラフィックの在り方も含めてトータルに提案します。',
                 service2_list: 'ブランディングツール（ロゴ、名刺、チラシ、パンフレット等）、サイン計画（案内・誘導） etc.',
                 work_h2: '03 / Featured Work', work_title: 'wordrobe',
                 work_desc: 'あなただけの言葉のワードローブ。英語と日本語のフレーズを保存し、AIが意味を解説。単語帳として必要最低限の機能と装飾で、日常使いするアプリとしてノイズにならないように設計。React / TypeScript / Firebase で構築（AI Assisted）',
                 work_category: 'Web Application', work_year: '2025', work_link: 'OPEN APP',
                 mood_en_text: '', // 日本語モードでは空
                 mood_text: '作為的な装飾よりも、静謐な『間』を。<br/>声高な主張よりも、永く愛される『気配』を。',
-                footer_contact: 'Get In Touch', footer_copyright: '© 2acing-widest', footer_crafting: 'Crafting the invisible.',
-                modal_title: 'お問い合わせ', modal_name: '氏名 / Name', modal_email: 'メールアドレス / Email', modal_message: 'お問い合わせ内容 / Message', modal_button: '送信',
-                modal_alert: 'お問い合わせが送信されました。確認次第、ご連絡いたします。',
+                footer_contact: 'CONTACT', footer_copyright: '© 2025 conizm_', footer_crafting: 'Crafting the invisible.',
+                profile_name: 'Cony', profile_title: 'Graphic & Experience Designer', profile_bg_label: 'Background',
+                profile_desc: '大学卒業後、空間デザイン事務所に勤務。その後、インハウスのグラフィックデザイナーとしての経験を経て、2023年よりフリーランス。Digital-Physical（Web, Print, and Space）を横断し、「人が心地よいと感じる」体験を設計・具現化することを目指しています。',
             },
             'en': {
                 nav_concept: '01 / CONCEPT', nav_services: '02 / SERVICES', nav_work: '03 / WORK', nav_contact: '04 / CONTACT',
@@ -359,21 +444,21 @@
                 concept_text_p2: 'conizm_ creates not static conclusions, but designs imbued with "Ma"— the intentional pause that invites what comes next. Beyond fleeting trends, we build an authentic presence that quietly harmonizes with any world.',
                 service_h2: '02 / Service',
                 service1_title: 'Interactive & Experience', service1_subtitle: 'WEB Application Development / UI/UX Design',
-                service1_desc_h: 'Prototyping with AI implementation and designing comfortable UI/UX experiences',
+                service1_desc_h: 'Leveraging AI technology to design comfortable UI experiences',
                 service1_desc_p: 'Applying the sense of "distance and placement where people feel comfortable" cultivated in interior design to digital spaces (UI/UX). Utilizing AI technology in coding, we rapidly implement ideas as applications. We aim for digital products that are not only functional but also tactile and warm to use.',
                 service1_list: 'WEB browser app development (AI implementation), UI/UX design, digital prototype creation etc.',
                 service2_title: 'Visual & Identity', service2_subtitle: 'Branding Tools / Sign Planning',
                 service2_desc_h: 'Translating brand identity from print media to signage planning',
-                service2_desc_p: 'Instead of chasing trends, we design a "presence" that quietly communicates the brand\'s philosophy. We offer total proposals, covering everything from handheld tools like business cards and brochures to spatial graphic design, including signage planning for stores and facilities.',
+                service2_desc_p: 'We design a "presence" that quietly communicates the brand\'s philosophy, rather than chasing fleeting trends. We offer total proposals, covering everything from handheld tools like business cards and brochures to spatial graphic design, including signage planning for stores and facilities.',
                 service2_list: 'Branding tools (logo, business cards, flyers, brochures, etc.), signage planning (guidance/navigation) etc.',
                 work_h2: '03 / Featured Work', work_title: 'wordrobe',
-                work_desc: 'Your personal wordrobe of words. Save English and Japanese phrases, explained by AI. Designed to be minimal in function and decoration, ensuring the app is not a noise source for daily use. Built with React / TypeScript / Firebase (AI Assisted).',
+                work_desc: 'Your personal wordrobe of words. Save English and Japanese phrases, explained by AI. Designed to be minimal in function and decoration, ensuring the app is not a a noise source for daily use. Built with React / TypeScript / Firebase (AI Assisted).',
                 work_category: 'Web Application', work_year: '2025', work_link: 'OPEN APP',
                 mood_en_text: '"Not just designing the visible, but curating the atmosphere itself."<br/> "In the quiet details, we find a timeless resonance."',
                 mood_text: 'We prioritize serene "Ma" (pause) over deliberate ornamentation, and "Kezhai" (presence) that is loved for a long time over loud assertions.',
-                footer_contact: 'GET IN TOUCH', footer_copyright: '© 2025 conizm_', footer_crafting: 'Crafting the invisible.',
-                modal_title: 'Contact Us', modal_name: 'Name', modal_email: 'Email', modal_message: 'Message', modal_button: 'Submit',
-                modal_alert: 'Your inquiry has been sent. We will contact you soon.',
+                footer_contact: 'CONTACT', footer_copyright: '© 2025 conizm_', footer_crafting: 'Crafting the invisible.',
+                profile_name: 'Cony', profile_title: 'Graphic & Experience Designer', profile_bg_label: 'Background',
+                profile_desc: 'After graduating from university, Cony worked at a spatial design firm. Following experience as an in-house graphic designer, Cony has been working freelance since 2023. The goal is to design and realize experiences that "make people feel comfortable" by crossing Digital-Physical (Web, Print, and Space) boundaries.',
             }
         };
 
@@ -396,25 +481,32 @@
             
             // 2.5 Mood Section English text handling
             const moodEnTextEl = document.getElementById('mood_en_text_revive');
-            if (moodEnTextEl) {
-                moodEnTextEl.innerHTML = data.mood_en_text;
-                // Control visibility based on content. Only display if English mode AND content exists.
-                if (lang === 'en' && data.mood_en_text.trim() !== '') {
+            const moodJpTextEl = document.getElementById('mood_text');
+            
+            if (moodEnTextEl && moodJpTextEl) {
+                // Style adjustment for mood EN text
+                moodEnTextEl.classList.add('font-jp', 'text-xs', 'leading-loose', 'opacity-70', 'tracking-wide', 'mb-0');
+                
+                if (lang === 'en') {
+                    // English mode: Display only the poetic English text
+                    moodEnTextEl.innerHTML = data.mood_en_text;
                     moodEnTextEl.style.display = 'block';
+                    moodJpTextEl.style.display = 'none'; 
                 } else {
+                    // Japanese mode: Display only the Japanese text
                     moodEnTextEl.style.display = 'none';
+                    moodJpTextEl.style.display = 'block';
                 }
             }
 
 
-            // 3. Modal Labels
-            document.getElementById('modal-title').textContent = data.modal_title;
-            document.getElementById('modal-name-label').textContent = data.modal_name;
-            document.getElementById('modal-email-label').textContent = data.modal_email;
-            document.getElementById('modal-message-label').textContent = data.modal_message;
-            document.getElementById('modal-button').textContent = data.modal_button;
-
-            // 4. Update dynamically generated content (Service Accordion - requires full re-render for complexity)
+            // 3. Profile Modal Content Update
+            document.getElementById('profile-name').textContent = data.profile_name;
+            document.getElementById('profile-title').textContent = data.profile_title;
+            document.getElementById('profile-bg-label').textContent = data.profile_bg_label;
+            document.getElementById('profile-description').textContent = data.profile_desc;
+            
+            // 4. Update dynamically generated content (Service Accordion)
             renderServiceItems(lang);
             
             // 5. Update Language Switcher state
@@ -440,11 +532,27 @@
         window.setLanguage = (lang) => {
             currentLang = lang;
             updateContent(lang);
-            // Save preference to session/local storage if needed
+        };
+
+        // --- Profile Modal Handlers ---
+        window.openProfileModal = () => {
+            const profileModal = document.getElementById('profile-modal');
+            profileModal.classList.remove('opacity-0', 'pointer-events-none');
+            profileModal.classList.add('opacity-100', 'pointer-events-auto');
+            document.body.style.overflow = 'hidden';
+            updateContent(currentLang); // Ensure profile content is updated when opened
+        };
+
+        window.closeProfileModal = (event) => {
+            const profileModal = document.getElementById('profile-modal');
+            if (event && event.target.id !== 'profile-modal') { return; }
+            profileModal.classList.remove('opacity-100', 'pointer-events-auto');
+            profileModal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'auto';
         };
 
 
-        // --- Image Slider (Simplified for HTML display) ---
+        // --- Image Slider (Dynamic Logic) ---
         
         const workImages = [
             'https://conizm.cc/images/wordrobeimage_1.png',
@@ -566,12 +674,13 @@
             if (!serviceContainer) return;
             serviceContainer.innerHTML = ''; // Clear previous content
 
+            // Order changed: Visual & Identity (2) first, then Interactive & Experience (1)
             const serviceData = [
                 { 
-                    titleKey: "service1_title", subtitleKey: "service1_subtitle", descHKey: "service1_desc_h", descPKey: "service1_desc_p", listKey: "service1_list"
+                    titleKey: "service2_title", subtitleKey: "service2_subtitle", descHKey: "service2_desc_h", descPKey: "service2_desc_p", listKey: "service2_list"
                 },
                 { 
-                    titleKey: "service2_title", subtitleKey: "service2_subtitle", descHKey: "service2_desc_h", descPKey: "service2_desc_p", listKey: "service2_list"
+                    titleKey: "service1_title", subtitleKey: "service1_subtitle", descHKey: "service1_desc_h", descPKey: "service1_desc_p", listKey: "service1_list"
                 }
             ];
 
@@ -582,21 +691,26 @@
                 const itemHtml = `
                     <div class="border-b border-[#2D2D2D]/20 pb-8 cursor-pointer group" id="service-item-${index}">
                         <div class="flex justify-between items-center transition-opacity hover:opacity-60">
-                            <div class="flex-1 flex flex-col md:flex-row md:items-end md:justify-between mr-4 md:mr-0">
+                            <!-- Left: Title and Subtitle (Full width on mobile, 50% on PC) -->
+                            <div class="flex-1 flex flex-col md:flex-row md:items-end md:justify-start">
                                 <h3 class="font-serif text-xl md:text-2xl font-normal tracking-tight mb-2 md:mb-0">
                                     ${data[keys.titleKey]}
                                 </h3>
+                                <!-- Added margin for PC spacing -->
                                 <p class="font-jp text-[10px] md:text-xs opacity-60 tracking-widest font-light uppercase md:ml-4 md:mb-1 md:mr-4">
                                     ${data[keys.subtitleKey]}
                                 </p>
                             </div>
+                            
+                            <!-- Right: Expand Icon -->
                             <div class="opacity-40 transform transition-transform duration-300 flex-shrink-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                             </div>
                         </div>
 
                         <div class="overflow-hidden transition-all duration-700 ease-in-out max-h-0 opacity-0 mt-0" id="service-details-${index}">
-                            <div class="font-jp text-xs leading-loose opacity-80 font-light tracking-wide space-y-6 md:w-3/4 md:mx-auto pt-8 md:text-center">
+                            <!-- Description (PC text alignment adjusted to left-aligned, full width) -->
+                            <div class="font-jp text-xs leading-loose opacity-80 font-light tracking-wide space-y-6 pt-8 md:w-full md:text-left">
                                 <div>
                                     <span class="block font-bold mb-4">${isFirstLineBold}</span>
                                     <span class="block">${restOfDescription.trim()}</span>
@@ -618,7 +732,7 @@
                 if (item && details && iconContainer) item.addEventListener('click', () => {
                     const isOpening = details.classList.contains('max-h-0');
                     if (isOpening) {
-                        details.style.maxHeight = details.scrollHeight + "px";
+                        details.style.maxHeight = details.scrollHeight + 100 + "px"; // Added buffer for smooth opening
                         details.classList.remove('max-h-0', 'opacity-0', 'mt-0');
                         details.classList.add('opacity-100', 'mt-8');
                         iconContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>';
@@ -643,6 +757,8 @@
             // Contact Modal Elements
             const contactModal = document.getElementById('contact-modal');
             const contactButton = document.getElementById('contact-button');
+            const profileButton = document.getElementById('profile-button');
+            const profileModal = document.getElementById('profile-modal');
             const contactForm = contactModal.querySelector('form');
 
             // --- Contact Modal Handlers ---
@@ -654,18 +770,32 @@
             };
 
             window.closeContactModal = (event) => {
-                // Ensure only clicks outside the inner modal content trigger close
-                if (event && event.target.id !== 'contact-modal') {
-                    return;
-                }
-
+                if (event && event.target.id !== 'contact-modal') { return; }
                 contactModal.classList.remove('opacity-100', 'pointer-events-auto');
                 contactModal.classList.add('opacity-0', 'pointer-events-none');
                 document.body.style.overflow = 'auto';
             };
+            
+            window.openProfileModal = () => {
+                profileModal.classList.remove('opacity-0', 'pointer-events-none');
+                profileModal.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden';
+                updateContent(currentLang); // Ensure profile content is updated when opened
+            };
+
+            window.closeProfileModal = (event) => {
+                if (event && event.target.id !== 'profile-modal') { return; }
+                profileModal.classList.remove('opacity-100', 'pointer-events-auto');
+                profileModal.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'auto';
+            };
+
 
             if(contactButton) {
                 contactButton.addEventListener('click', openContactModal);
+            }
+            if(profileButton) {
+                profileButton.addEventListener('click', openProfileModal);
             }
             
             contactForm.addEventListener('submit', function() {
