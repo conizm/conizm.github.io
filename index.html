@@ -53,25 +53,26 @@
         .h-66vh {
             height: 66vh;
         }
-        /* Ensures smooth scrolling even with fixed header */
-        body {
-            padding-top: 5rem; /* Base padding to account for fixed header height */
-            margin-top: -5rem;
-        }
-        @media (min-width: 768px) {
-            body {
-                padding-top: 7rem;
-                margin-top: -7rem;
-            }
-        }
+        
+        /* Define Nav height for reference */
         nav {
             padding-top: 0;
             padding-bottom: 0;
-            height: 5rem; /* Fixed height for mobile nav */
+            height: 5rem; /* Mobile Nav Height */
         }
         @media (min-width: 768px) {
             nav {
-                height: 7rem; /* Fixed height for desktop nav */
+                height: 7rem; /* Desktop Nav Height */
+            }
+        }
+        
+        /* Apply padding to the main section to avoid header overlap */
+        #hero-section {
+            padding-top: 5rem; /* Compensate for mobile nav height (5rem) */
+        }
+        @media (min-width: 768px) {
+            #hero-section {
+                padding-top: 7rem; /* Compensate for desktop nav height (7rem) */
             }
         }
 
@@ -86,7 +87,7 @@
     <!-- Mobile Menu Overlay (Hidden by default) -->
     <div 
         id="mobile-menu-overlay"
-        class="fixed top-0 right-0 w-1/2 h-[66vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-xl opacity-0 translate-x-full pointer-events-none"
+        class="fixed top-0 right-0 w-1/2 h-[50vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-md opacity-0 translate-x-full pointer-events-none"
     >
         <a href="#philosophy" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
         <a href="#services" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
@@ -99,7 +100,7 @@
         </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation (Fixed Header) -->
     <nav class="fixed top-0 w-full p-8 md:p-12 flex justify-between items-center z-50 mix-blend-multiply bg-gradient-to-b from-[#F7F7F7]/95 to-transparent backdrop-blur-xl">
         <a 
           href="#" 
@@ -155,7 +156,7 @@
     <!-- Mobile Menu Overlay (Hidden by default) -->
     <div 
         id="mobile-menu-overlay"
-        class="fixed top-0 right-0 w-1/2 h-[66vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-xl opacity-0 translate-x-full pointer-events-none"
+        class="fixed top-0 right-0 w-1/2 h-[50vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-md opacity-0 translate-x-full pointer-events-none"
     >
         <a href="#philosophy" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
         <a href="#services" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
@@ -169,7 +170,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="h-screen w-full flex flex-col justify-center items-center relative px-6">
+    <section id="hero-section" class="h-screen w-full flex flex-col justify-center items-center relative px-6">
         <!-- Offset adjustment: mt-[-8rem] (mobile) and md:mt-[-5.5rem] (PC) -->
         <div id="hero-content" class="w-full max-w-[360px] opacity-0 translate-y-10 transition-all duration-[2000ms] ease-out mt-[-8rem] md:mt-[-5.5rem]">
             
@@ -542,6 +543,21 @@
         };
 
         // --- Profile Modal Handlers ---
+        window.openContactModal = () => {
+            const contactModal = document.getElementById('contact-modal');
+            contactModal.classList.remove('opacity-0', 'pointer-events-none');
+            contactModal.classList.add('opacity-100', 'pointer-events-auto');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeContactModal = (event) => {
+            const contactModal = document.getElementById('contact-modal');
+            if (event && event.target.id !== 'contact-modal') { return; }
+            contactModal.classList.remove('opacity-100', 'pointer-events-auto');
+            contactModal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'auto';
+        };
+        
         window.openProfileModal = () => {
             const profileModal = document.getElementById('profile-modal');
             profileModal.classList.remove('opacity-0', 'pointer-events-none');
