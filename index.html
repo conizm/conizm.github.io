@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>conizm_ | Crafting the Invisible</title>
+    
+    <!-- OGP and Favicon Settings -->
+    <link rel="icon" href="https://conizm.cc/images/icon-conizm.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://conizm.cc/images/icon-conizm.png">
+    <meta property="og:title" content="conizm_ | Crafting the Invisible">
+    <meta property="og:description" content="かたちあるものの奥に、 本当につくりたい「気配」が潜んでいる。">
+    <meta property="og:image" content="https://conizm.cc/images/ogp-conizm.png">
+    <meta property="og:type" content="website">
+    
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Google Fonts -->
@@ -57,6 +66,11 @@
         <a href="#services" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
         <a href="#works" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#works')">WORK</a>
         <a href="#contact" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#contact')">CONTACT</a>
+        
+        <div class="flex gap-4 mt-4 font-mono text-xs opacity-60">
+            <button onclick="setLanguage('ja')" id="lang-ja-mobile" class="font-bold border-b border-[#2D2D2D]">JP</button>
+            <button onclick="setLanguage('en')" id="lang-en-mobile">EN</button>
+        </div>
     </div>
 
     <!-- Navigation -->
@@ -89,10 +103,16 @@
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex gap-8 font-mono text-[10px] tracking-widest">
-            <a href="#philosophy" class="hover:line-through decoration-[#2D2D2D] transition-all">01 / CONCEPT</a>
-            <a href="#services" class="hover:line-through decoration-[#2D2D2D] transition-all">02 / SERVICES</a>
-            <a href="#works" class="hover:line-through decoration-[#2D2D2D] transition-all">03 / WORK</a>
-            <a href="#contact" class="hover:line-through decoration-[#2D2D2D] transition-all">04 / CONTACT</a>
+            <a href="#philosophy" class="hover:line-through decoration-[#2D2D2D] transition-all" data-content-key="nav_concept">01 / CONCEPT</a>
+            <a href="#services" class="hover:line-through decoration-[#2D2D2D] transition-all" data-content-key="nav_services">02 / SERVICES</a>
+            <a href="#works" class="hover:line-through decoration-[#2D2D2D] transition-all" data-content-key="nav_work">03 / WORK</a>
+            <a href="#contact" class="hover:line-through decoration-[#2D2D2D] transition-all" data-content-key="nav_contact">04 / CONTACT</a>
+        </div>
+        
+        <!-- Desktop Language Switch -->
+        <div class="hidden md:flex gap-4 font-mono text-[10px] tracking-widest">
+            <button onclick="setLanguage('ja')" id="lang-ja-desktop" class="font-bold border-b border-[#2D2D2D]" data-content-key="lang_jp">JP</button>
+            <button onclick="setLanguage('en')" id="lang-en-desktop" data-content-key="lang_en">EN</button>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -105,17 +125,6 @@
           <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
     </nav>
-
-    <!-- Mobile Menu Overlay (Hidden by default) -->
-    <div 
-        id="mobile-menu-overlay"
-        class="fixed top-0 right-0 w-1/2 h-[66vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-5 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-xl opacity-0 translate-x-full pointer-events-none"
-    >
-        <a href="#philosophy" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
-        <a href="#services" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
-        <a href="#works" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#works')">WORK</a>
-        <a href="#contact" class="font-mono text-base tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#contact')">CONTACT</a>
-    </div>
 
     <!-- Hero Section -->
     <section class="h-screen w-full flex flex-col justify-center items-center relative px-6">
@@ -171,17 +180,17 @@
     <section id="philosophy" class="py-32 md:py-48 px-6 md:px-24 max-w-4xl mx-auto">
         <div class="flex flex-col md:flex-row gap-12 md:gap-24 items-start">
             <div class="w-full md:w-1/4 pt-2 border-t border-[#2D2D2D]">
-                <h2 class="font-mono text-[10px] uppercase tracking-widest mb-2">01 / Concept</h2>
+                <h2 class="font-mono text-[10px] uppercase tracking-widest mb-2" data-content-key="concept_h2">01 / Concept</h2>
             </div>
             <div class="w-full md:w-3/4">
-                <p class="font-serif text-xl md:text-2xl font-normal tracking-tight mb-6 text-[#2D2D2D]">
+                <p class="font-serif text-xl md:text-2xl font-normal tracking-tight mb-6 text-[#2D2D2D]" data-content-key="concept_main">
                     Crafting the invisible.
                 </p>
                 <div class="font-jp text-xs leading-loose opacity-80 space-y-4 font-light tracking-wide">
-                    <p>
+                    <p id="concept_text_p1">
                         かたちあるものの奥に、 本当につくりたい「気配」が潜んでいる。画面の中のピクセルも、空間を満たす素材も。 手段にとらわれず、その場所にあるべき空気を編集する。
                     </p>
-                    <p>
+                    <p id="concept_text_p2">
                         conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間」のあるデザイン。流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。
                     </p>
                 </div>
@@ -193,7 +202,7 @@
     <section id="services" class="py-24 px-6 md:px-24 bg-[#EAEAEA]">
         <div class="max-w-4xl mx-auto">
             <div class="mb-16 pt-2 border-t border-[#2D2D2D]">
-                <h2 class="font-mono text-[10px] uppercase tracking-widest">02 / Service</h2>
+                <h2 class="font-mono text-[10px] uppercase tracking-widest" data-content-key="service_h2">02 / Service</h2>
             </div>
             
             <div class="grid grid-cols-1 gap-12" id="service-container">
@@ -206,7 +215,7 @@
     <section id="works" class="py-32 px-6 md:px-12">
         <div class="max-w-6xl mx-auto mb-16 pt-2 border-t border-[#2D2D2D] flex justify-between items-end">
             <div>
-                <h2 class="font-mono text-[10px] uppercase tracking-widest mb-2">03 / Featured Work</h2>
+                <h2 class="font-mono text-[10px] uppercase tracking-widest mb-2" data-content-key="work_h2">03 / Featured Work</h2>
             </div>
         </div>
 
@@ -216,8 +225,8 @@
             
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="max-w-xl">
-                    <h3 class="font-serif text-2xl md:text-3xl mb-4 font-normal lowercase">wordrobe</h3>
-                    <p class="font-jp font-light text-xs leading-loose opacity-70 tracking-wide">
+                    <h3 class="font-serif text-2xl md:text-3xl mb-4 font-normal lowercase" data-content-key="work_title">wordrobe</h3>
+                    <p class="font-jp text-xs leading-loose opacity-70 tracking-wide" id="work_desc">
                         あなただけの言葉のワードローブ。
                         英語と日本語のフレーズを保存し、AIが意味を解説。
                         単語帳として必要最低限の機能と装飾で、日常使いするアプリとしてノイズにならないように設計。
@@ -225,15 +234,15 @@
                     </p>
                 </div>
                 <div class="flex flex-col items-end gap-2 font-mono text-[10px] opacity-60 text-right uppercase tracking-widest w-full md:w-auto">
-                    <span>Web Application</span>
-                    <span>2025</span>
+                    <span data-content-key="work_category">Web Application</span>
+                    <span data-content-key="work_year">2025</span>
                     <a 
                       href="https://wordrobe.cc/wordrobe.html" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       class="flex items-center gap-1 hover:opacity-50 transition-opacity cursor-pointer"
                     >
-                        OPEN APP <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        <span data-content-key="work_link">OPEN APP</span> <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                 </div>
             </div>
@@ -250,8 +259,9 @@
                   class="w-full aspect-square object-cover" 
                 />
             </div>
-            <div class="w-full md:w-1/2 text-right">
-                <p class="font-jp font-light text-xs leading-loose opacity-70 tracking-wide">
+            <div class="w-full md:w-1/2 text-right flex flex-col justify-center self-stretch">
+                <p class="font-serif text-sm md:text-base leading-loose opacity-80 mb-8 font-normal" id="mood_en_text_revive"></p>
+                <p class="font-jp font-light text-xs leading-loose opacity-70 tracking-wide" id="mood_text">
                     作為的な装飾よりも、静謐な『間』を。<br/>
                     声高な主張よりも、永く愛される『気配』を。
                 </p>
@@ -262,7 +272,7 @@
     <!-- Footer -->
     <footer id="contact" class="py-32 px-6 md:px-24 bg-[#F7F7F7] relative">
         <div class="max-w-3xl mx-auto text-center">
-            <p class="font-mono text-[10px] mb-8 tracking-[0.2em] uppercase">Get In Touch</p>
+            <p class="font-mono text-[10px] mb-8 tracking-[0.2em] uppercase" data-content-key="footer_contact">Get In Touch</p>
             <button 
               id="contact-button"
               class="inline-block mb-12 hover:opacity-50 transition-opacity"
@@ -273,8 +283,8 @@
             </button>
             
             <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[#2D2D2D]/20 text-[10px] font-mono opacity-40 tracking-widest">
-                <span>© 2025 conizm_</span>
-                <span>Crafting the invisible.</span>
+                <span data-content-key="footer_copyright">© 2025 conizm_</span>
+                <span data-content-key="footer_crafting">Crafting the invisible.</span>
             </div>
         </div>
     </footer>
@@ -285,36 +295,343 @@
             <button class="absolute top-4 right-4 text-[#2D2D2D] hover:opacity-50 transition-opacity" onclick="closeContactModal()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
-            <h3 class="font-serif text-2xl mb-6 text-center text-[#2D2D2D]">contact me</h3>
+            <h3 class="font-serif text-2xl mb-6 text-center text-[#2D2D2D]" id="modal-title">Contact Us</h3>
             
             <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA-UEOhUdyIVa3pNuWj0sXsExP3xXt8dkQCBiRqtLlm1EJVA/formResponse" method="POST" target="hidden_iframe">
                 
                 <div class="mb-4">
-                    <label for="entry.956780696" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70">氏名 / Name</label>
+                    <label for="entry.956780696" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70" id="modal-name-label">氏名 / Name</label>
                     <input type="text" id="entry.956780696" name="entry.956780696" required class="w-full p-2 border border-[#2D2D2D]/30 bg-transparent font-serif text-sm focus:border-[#2D2D2D] transition-colors rounded-lg">
                 </div>
 
                 <div class="mb-4">
-                    <label for="entry.422165517" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70">メールアドレス / Email</label>
+                    <label for="entry.422165517" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70" id="modal-email-label">メールアドレス / Email</label>
                     <input type="email" id="entry.422165517" name="entry.422165517" required class="w-full p-2 border border-[#2D2D2D]/30 bg-transparent font-serif text-sm focus:border-[#2D2D2D] transition-colors rounded-lg">
                 </div>
 
                 <div class="mb-6">
-                    <label for="entry.1033281640" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70">お問い合わせ内容 / Message</label>
+                    <label for="entry.1033281640" class="block text-xs font-mono tracking-widest uppercase mb-1 opacity-70" id="modal-message-label">お問い合わせ内容 / Message</label>
                     <textarea id="entry.1033281640" name="entry.1033281640" rows="5" required class="w-full p-2 border border-[#2D2D2D]/30 bg-transparent font-serif text-sm focus:border-[#2D2D2D] transition-colors rounded-lg"></textarea>
                 </div>
 
-                <button type="submit" class="w-full bg-[#2D2D2D] text-[#F7F7F7] font-mono text-sm uppercase tracking-widest py-3 rounded-xl hover:opacity-90 transition-opacity">
+                <button type="submit" class="w-full bg-[#2D2D2D] text-[#F7F7F7] font-mono text-sm uppercase tracking-widest py-3 rounded-xl hover:opacity-90 transition-opacity" id="modal-button">
                     送信
                 </button>
             </form>
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted) {alert('お問い合わせが送信されました。確認次第、ご連絡いたします。'); closeContactModal();}"></iframe>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted) {alert(content[currentLang].modal_alert); closeContactModal();}"></iframe>
         </div>
     </div>
 
     <script>
-        // Set submitted flag globally
         window.submitted = false;
+        let currentLang = 'ja';
+
+        const content = {
+            'ja': {
+                nav_concept: '01 / CONCEPT', nav_services: '02 / SERVICES', nav_work: '03 / WORK', nav_contact: '04 / CONTACT',
+                lang_jp: 'JP', lang_en: 'EN',
+                concept_h2: '01 / Concept', concept_main: 'Crafting the invisible.',
+                concept_text_p1: 'かたちあるものの奥に、 本当につくりたい「気配」が潜んでいる。画面の中のピクセルも、空間を満たす素材も。 手段にとらわれず、その場所にあるべき空気を編集する。',
+                concept_text_p2: 'conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間（ま）」のあるデザイン。流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。',
+                service_h2: '02 / Service',
+                service1_title: 'Interactive & Experience', service1_subtitle: 'WEBアプリケーション開発 / UI/UX設計',
+                service1_desc_h: 'AI実装によるプロトタイピングと、心地よいUI体験の設計',
+                service1_desc_p: 'インテリアデザインで培った「人が快適に感じる距離感や配置」の感覚を、デジタル空間（UI/UX）に応用。AI技術をコーディングに活用することで、アイディアを迅速にアプリとして実装します。機能性だけでなく、触っていて気持ちの良い、体温のあるデジタルプロダクトを目指します。',
+                service1_list: 'WEBブラウザアプリ開発（AI実装）、UI/UXデザイン、デジタルプロトタイプ作成 etc.',
+                service2_title: 'Visual & Identity', service2_subtitle: 'ブランディングツール / サイン計画',
+                service2_desc_h: '紙媒体からサイン計画まで、ブランドの世界観を翻訳する',
+                service2_desc_p: '流行を追うのではなく、ブランドの思想が静かに伝わる「佇まい」をデザインします。名刺やパンフレットなどの手元ツールから、店舗や施設のサイン計画（案内表示）まで、空間におけるグラフィックの在り方も含めてトータルに提案します。',
+                service2_list: 'ブランディングツール（ロゴ、名刺、チラシ、パンフレット等）、サイン計画（案内・誘導） etc.',
+                work_h2: '03 / Featured Work', work_title: 'wordrobe',
+                work_desc: 'あなただけの言葉のワードローブ。英語と日本語のフレーズを保存し、AIが意味を解説。単語帳として必要最低限の機能と装飾で、日常使いするアプリとしてノイズにならないように設計。React / TypeScript / Firebase で構築（AI Assisted）',
+                work_category: 'Web Application', work_year: '2025', work_link: 'OPEN APP',
+                mood_en_text: '', // 日本語モードでは空
+                mood_text: '作為的な装飾よりも、静謐な『間』を。<br/>声高な主張よりも、永く愛される『気配』を。',
+                footer_contact: 'Get In Touch', footer_copyright: '© 2acing-widest', footer_crafting: 'Crafting the invisible.',
+                modal_title: 'お問い合わせ', modal_name: '氏名 / Name', modal_email: 'メールアドレス / Email', modal_message: 'お問い合わせ内容 / Message', modal_button: '送信',
+                modal_alert: 'お問い合わせが送信されました。確認次第、ご連絡いたします。',
+            },
+            'en': {
+                nav_concept: '01 / CONCEPT', nav_services: '02 / SERVICES', nav_work: '03 / WORK', nav_contact: '04 / CONTACT',
+                lang_jp: 'JP', lang_en: 'EN',
+                concept_h2: '01 / Concept', concept_main: 'Crafting the invisible.',
+                concept_text_p1: 'Deep within visible forms lies the true presence we aim to create. From pixels on a screen to materials in a room. Unbound by medium, we shape the very atmosphere of the space.',
+                concept_text_p2: 'conizm_ creates not static conclusions, but designs imbued with "Ma"— the intentional pause that invites what comes next. Beyond fleeting trends, we build an authentic presence that quietly harmonizes with any world.',
+                service_h2: '02 / Service',
+                service1_title: 'Interactive & Experience', service1_subtitle: 'WEB Application Development / UI/UX Design',
+                service1_desc_h: 'Prototyping with AI implementation and designing comfortable UI/UX experiences',
+                service1_desc_p: 'Applying the sense of "distance and placement where people feel comfortable" cultivated in interior design to digital spaces (UI/UX). Utilizing AI technology in coding, we rapidly implement ideas as applications. We aim for digital products that are not only functional but also tactile and warm to use.',
+                service1_list: 'WEB browser app development (AI implementation), UI/UX design, digital prototype creation etc.',
+                service2_title: 'Visual & Identity', service2_subtitle: 'Branding Tools / Sign Planning',
+                service2_desc_h: 'Translating brand identity from print media to signage planning',
+                service2_desc_p: 'Instead of chasing trends, we design a "presence" that quietly communicates the brand\'s philosophy. We offer total proposals, covering everything from handheld tools like business cards and brochures to spatial graphic design, including signage planning for stores and facilities.',
+                service2_list: 'Branding tools (logo, business cards, flyers, brochures, etc.), signage planning (guidance/navigation) etc.',
+                work_h2: '03 / Featured Work', work_title: 'wordrobe',
+                work_desc: 'Your personal wordrobe of words. Save English and Japanese phrases, explained by AI. Designed to be minimal in function and decoration, ensuring the app is not a noise source for daily use. Built with React / TypeScript / Firebase (AI Assisted).',
+                work_category: 'Web Application', work_year: '2025', work_link: 'OPEN APP',
+                mood_en_text: '"Not just designing the visible, but curating the atmosphere itself."<br/> "In the quiet details, we find a timeless resonance."',
+                mood_text: 'We prioritize serene "Ma" (pause) over deliberate ornamentation, and "Kezhai" (presence) that is loved for a long time over loud assertions.',
+                footer_contact: 'GET IN TOUCH', footer_copyright: '© 2025 conizm_', footer_crafting: 'Crafting the invisible.',
+                modal_title: 'Contact Us', modal_name: 'Name', modal_email: 'Email', modal_message: 'Message', modal_button: 'Submit',
+                modal_alert: 'Your inquiry has been sent. We will contact you soon.',
+            }
+        };
+
+        const updateContent = (lang) => {
+            const data = content[lang];
+
+            // 1. Navigation & Headers
+            document.querySelectorAll('[data-content-key]').forEach(el => {
+                const key = el.getAttribute('data-content-key');
+                if (data[key]) {
+                    el.textContent = data[key];
+                }
+            });
+            
+            // 2. Main Sections (by ID)
+            document.getElementById('concept_text_p1').innerHTML = data.concept_text_p1;
+            document.getElementById('concept_text_p2').innerHTML = data.concept_text_p2;
+            document.getElementById('work_desc').textContent = data.work_desc;
+            document.getElementById('mood_text').innerHTML = data.mood_text;
+            
+            // 2.5 Mood Section English text handling
+            const moodEnTextEl = document.getElementById('mood_en_text_revive');
+            if (moodEnTextEl) {
+                moodEnTextEl.innerHTML = data.mood_en_text;
+                // Control visibility based on content. Only display if English mode AND content exists.
+                if (lang === 'en' && data.mood_en_text.trim() !== '') {
+                    moodEnTextEl.style.display = 'block';
+                } else {
+                    moodEnTextEl.style.display = 'none';
+                }
+            }
+
+
+            // 3. Modal Labels
+            document.getElementById('modal-title').textContent = data.modal_title;
+            document.getElementById('modal-name-label').textContent = data.modal_name;
+            document.getElementById('modal-email-label').textContent = data.modal_email;
+            document.getElementById('modal-message-label').textContent = data.modal_message;
+            document.getElementById('modal-button').textContent = data.modal_button;
+
+            // 4. Update dynamically generated content (Service Accordion - requires full re-render for complexity)
+            renderServiceItems(lang);
+            
+            // 5. Update Language Switcher state
+            const jpBtns = document.querySelectorAll('#lang-ja-desktop, #lang-ja-mobile');
+            const enBtns = document.querySelectorAll('#lang-en-desktop, #lang-en-mobile');
+
+            jpBtns.forEach(btn => {
+                if (lang === 'ja') {
+                    btn.classList.add('font-bold', 'border-b', 'border-[#2D2D2D]');
+                } else {
+                    btn.classList.remove('font-bold', 'border-b', 'border-[#2D2D2D]');
+                }
+            });
+            enBtns.forEach(btn => {
+                if (lang === 'en') {
+                    btn.classList.add('font-bold', 'border-b', 'border-[#2D2D2D]');
+                } else {
+                    btn.classList.remove('font-bold', 'border-b', 'border-[#2D2D2D]');
+                }
+            });
+        };
+
+        window.setLanguage = (lang) => {
+            currentLang = lang;
+            updateContent(lang);
+            // Save preference to session/local storage if needed
+        };
+
+
+        // --- Image Slider (Simplified for HTML display) ---
+        
+        const workImages = [
+            'https://conizm.cc/images/wordrobeimage_1.png',
+            'https://conizm.cc/images/wordrobeimage_2.png',
+            'https://conizm.cc/images/wordrobeimage_3.png'
+        ];
+
+        let currentSlideIndex = 0;
+        let autoPlayTimer;
+        const minSwipeDistance = 50;
+
+        function renderSlider() {
+            const sliderContainer = document.getElementById('image-slider-container');
+            if (!sliderContainer) return;
+
+            let sliderHtml = `
+                <div 
+                    class="w-full aspect-video bg-[#cfcfcf] mb-8 relative overflow-hidden group select-none"
+                    id="image-slider"
+                >
+                    <div class="relative w-full h-full" id="slide-images">
+                        ${workImages.map((src, index) => `
+                            <div 
+                                class="absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out grayscale ${index === currentSlideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}"
+                                id="slide-${index}"
+                            >
+                                <img src="${src}" alt="Work slide ${index + 1}" class="w-full h-full object-cover"/>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <!-- PC Navigation Arrow -->
+                    <button id="next-slide-btn" class="hidden md:flex absolute top-1/2 right-4 -translate-y-1/2 z-20 text-[#2D2D2D]/60 hover:text-[#2D2D2D] transition-colors p-2" aria-label="Next slide">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+
+                    <!-- Pagination Dots -->
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20" id="slide-dots">
+                        ${workImages.map((_, index) => `
+                            <button
+                                class="w-1.5 h-1.5 rounded-full transition-all duration-500 ${index === currentSlideIndex ? 'bg-[#2D2D2D] scale-125' : 'bg-[#2D2D2D]/40 hover:bg-[#2D2D2D]/60'}"
+                                data-slide-index="${index}"
+                                aria-label="Go to slide ${index + 1}"
+                            />
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            sliderContainer.innerHTML = sliderHtml;
+            setupSliderEvents();
+            startAutoPlay();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            renderSlider();
+        }
+
+        function startAutoPlay() {
+            if (autoPlayTimer) clearInterval(autoPlayTimer);
+            autoPlayTimer = setInterval(() => {
+                currentSlideIndex = (currentSlideIndex + 1) % workImages.length;
+                renderSlider();
+            }, 6000);
+        }
+
+        function setupSliderEvents() {
+            document.querySelectorAll('#slide-dots button').forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    const index = parseInt(e.target.dataset.slideIndex);
+                    goToSlide(index);
+                    startAutoPlay();
+                });
+            });
+
+            const nextBtn = document.getElementById('next-slide-btn');
+            if(nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    goToSlide((currentSlideIndex + 1) % workImages.length);
+                    startAutoPlay();
+                });
+            }
+            
+            const slider = document.getElementById('image-slider');
+            let touchStartX = null;
+            let touchEndX = null;
+
+            if (slider) {
+                slider.addEventListener('touchstart', (e) => {
+                    touchEndX = null;
+                    touchStartX = e.targetTouches[0].clientX;
+                });
+
+                slider.addEventListener('touchmove', (e) => {
+                    touchEndX = e.targetTouches[0].clientX;
+                });
+
+                slider.addEventListener('touchend', () => {
+                    if (!touchStartX || !touchEndX) return;
+                    const distance = touchStartX - touchEndX;
+                    
+                    if (distance > minSwipeDistance) {
+                        goToSlide((currentSlideIndex + 1) % workImages.length);
+                    } else if (distance < -minSwipeDistance) {
+                        goToSlide((currentSlideIndex - 1 + workImages.length) % workImages.length);
+                    }
+                    startAutoPlay();
+                    touchStartX = null;
+                    touchEndX = null;
+                });
+            }
+        }
+        
+        // --- Service Accordion (Dynamic HTML Generation) ---
+        
+        const renderServiceItems = (lang) => {
+            const data = content[lang];
+            const serviceContainer = document.getElementById('service-container');
+            if (!serviceContainer) return;
+            serviceContainer.innerHTML = ''; // Clear previous content
+
+            const serviceData = [
+                { 
+                    titleKey: "service1_title", subtitleKey: "service1_subtitle", descHKey: "service1_desc_h", descPKey: "service1_desc_p", listKey: "service1_list"
+                },
+                { 
+                    titleKey: "service2_title", subtitleKey: "service2_subtitle", descHKey: "service2_desc_h", descPKey: "service2_desc_p", listKey: "service2_list"
+                }
+            ];
+
+            serviceData.forEach((keys, index) => {
+                const isFirstLineBold = data[keys.descHKey];
+                const restOfDescription = data[keys.descPKey];
+                
+                const itemHtml = `
+                    <div class="border-b border-[#2D2D2D]/20 pb-8 cursor-pointer group" id="service-item-${index}">
+                        <div class="flex justify-between items-center transition-opacity hover:opacity-60">
+                            <div class="flex-1 flex flex-col md:flex-row md:items-end md:justify-between mr-4 md:mr-0">
+                                <h3 class="font-serif text-xl md:text-2xl font-normal tracking-tight mb-2 md:mb-0">
+                                    ${data[keys.titleKey]}
+                                </h3>
+                                <p class="font-jp text-[10px] md:text-xs opacity-60 tracking-widest font-light uppercase md:ml-4 md:mb-1 md:mr-4">
+                                    ${data[keys.subtitleKey]}
+                                </p>
+                            </div>
+                            <div class="opacity-40 transform transition-transform duration-300 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="overflow-hidden transition-all duration-700 ease-in-out max-h-0 opacity-0 mt-0" id="service-details-${index}">
+                            <div class="font-jp text-xs leading-loose opacity-80 font-light tracking-wide space-y-6 md:w-3/4 md:mx-auto pt-8 md:text-center">
+                                <div>
+                                    <span class="block font-bold mb-4">${isFirstLineBold}</span>
+                                    <span class="block">${restOfDescription.trim()}</span>
+                                </div>
+                                <p class="opacity-60 border-t border-[#2D2D2D]/10 pt-4">${data[keys.listKey]}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                serviceContainer.innerHTML += itemHtml;
+            });
+            
+            // Re-attach Click Handlers for Accordion
+            serviceData.forEach((_, index) => {
+                const item = document.getElementById(`service-item-${index}`);
+                const details = document.getElementById(`service-details-${index}`);
+                const iconContainer = item ? item.querySelector('.flex-shrink-0') : null;
+
+                if (item && details && iconContainer) item.addEventListener('click', () => {
+                    const isOpening = details.classList.contains('max-h-0');
+                    if (isOpening) {
+                        details.style.maxHeight = details.scrollHeight + "px";
+                        details.classList.remove('max-h-0', 'opacity-0', 'mt-0');
+                        details.classList.add('opacity-100', 'mt-8');
+                        iconContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>';
+                    } else {
+                        details.style.maxHeight = '0px';
+                        details.classList.add('max-h-0', 'opacity-0', 'mt-0');
+                        details.classList.remove('opacity-100', 'mt-8');
+                        iconContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>';
+                    }
+                });
+            });
+        };
+
 
         document.addEventListener('DOMContentLoaded', () => {
             const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
@@ -337,14 +654,9 @@
             };
 
             window.closeContactModal = (event) => {
-                // Check if the event is passed and the click target is NOT the modal itself (i.e., clicked inside modal content)
+                // Ensure only clicks outside the inner modal content trigger close
                 if (event && event.target.id !== 'contact-modal') {
-                    // Check if the target is within the modal content but not the close button
-                    if (!event.target.closest('#contact-modal > div') || event.target.closest('button')) {
-                        // This allows the close button or outside click to work
-                    } else {
-                        return;
-                    }
+                    return;
                 }
 
                 contactModal.classList.remove('opacity-100', 'pointer-events-auto');
@@ -357,10 +669,10 @@
             }
             
             contactForm.addEventListener('submit', function() {
-                window.submitted = true; // Use window.submitted for global access
+                window.submitted = true;
             });
 
-            // --- 1. Initial Load & Hero Animation (Remains the same) ---
+            // --- 1. Initial Load & Hero Animation ---
             
             const cGroup = document.getElementById('c-group');
             const underbarGroup = document.getElementById('underbar-group');
@@ -435,202 +747,13 @@
                 }, 100);
             };
 
-            // --- 3. Service Accordion Logic (Dynamic HTML Generation) ---
-
-            const serviceData = [
-                { 
-                    title: "Interactive & Experience", 
-                    subtitle: "WEBアプリケーション開発 / UI/UX設計", 
-                    description: "AI実装によるプロトタイピングと、心地よいUI体験の設計\nインテリアデザインで培った「人が快適に感じる距離感や配置」の感覚を、デジタル空間（UI/UX）に応用。AI技術をコーディングに活用することで、アイディアを迅速にアプリとして実装します。機能性だけでなく、触っていて気持ちの良い、体温のあるデジタルプロダクトを目指します。",
-                    serviceList: "WEBブラウザアプリ開発（AI実装）、UI/UXデザイン、デジタルプロトタイプ作成 etc."
-                },
-                { 
-                    title: "Visual & Identity", 
-                    subtitle: "ブランディングツール / サイン計画", 
-                    description: "紙媒体からサイン計画まで、ブランドの世界観を翻訳する\n流行を追うのではなく、ブランドの思想が静かに伝わる「佇まい」をデザインします。名刺やパンフレットなどの手元ツールから、店舗や施設のサイン計画（案内表示）まで、空間におけるグラフィックの在り方も含めてトータルに提案します。",
-                    serviceList: "ブランディングツール（ロゴ、名刺、チラシ、パンフレット等）、サイン計画（案内・誘導） etc."
-                }
-            ];
-
-            const serviceContainer = document.getElementById('service-container');
-
-            serviceData.forEach((data, index) => {
-                const isFirstLineBold = data.description.split('\n')[0];
-                const restOfDescription = data.description.split('\n').slice(1).join('\n');
-                
-                const itemHtml = `
-                    <div class="border-b border-[#2D2D2D]/20 pb-8 cursor-pointer group" id="service-item-${index}">
-                        <div class="flex justify-between items-center transition-opacity hover:opacity-60">
-                            <div class="flex-1 flex flex-col md:flex-row md:items-end md:justify-between mr-4 md:mr-0">
-                                <h3 class="font-serif text-xl md:text-2xl font-normal tracking-tight mb-2 md:mb-0">
-                                    ${data.title}
-                                </h3>
-                                <p class="font-jp text-[10px] md:text-xs opacity-60 tracking-widest font-light uppercase md:ml-4 md:mb-1">
-                                    ${data.subtitle}
-                                </p>
-                            </div>
-                            <div class="opacity-40 transform transition-transform duration-300 flex-shrink-0" id="service-icon-${index}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                            </div>
-                        </div>
-
-                        <div class="overflow-hidden transition-all duration-700 ease-in-out max-h-0 opacity-0 mt-0" id="service-details-${index}">
-                            <div class="font-jp text-xs leading-loose opacity-80 font-light tracking-wide space-y-6 md:w-3/4 ml-auto pt-8">
-                                <div>
-                                    <span class="block font-bold mb-4">${isFirstLineBold}</span>
-                                    <span class="block">${restOfDescription.trim()}</span>
-                                </div>
-                                <p class="opacity-60 border-t border-[#2D2D2D]/10 pt-4">${data.serviceList}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                serviceContainer.innerHTML += itemHtml;
-            });
-
-            // Add Click Handlers for Accordion
-            serviceData.forEach((_, index) => {
-                const item = document.getElementById(`service-item-${index}`);
-                const details = document.getElementById(`service-details-${index}`);
-                const iconContainer = document.getElementById(`service-icon-${index}`);
-
-                item.addEventListener('click', (e) => {
-                    const isOpening = details.classList.contains('max-h-0');
-
-                    // Reset max-height before transition if opening
-                    if (isOpening) {
-                        details.style.maxHeight = details.scrollHeight + "px";
-                        details.classList.remove('max-h-0', 'opacity-0', 'mt-0');
-                        details.classList.add('opacity-100', 'mt-8');
-                        iconContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>';
-                    } else {
-                        // Collapse
-                        details.style.maxHeight = '0px';
-                        details.classList.add('max-h-0', 'opacity-0', 'mt-0');
-                        details.classList.remove('opacity-100', 'mt-8');
-                        iconContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>';
-                    }
-                });
-            });
-
-
             // --- 4. Image Slider Logic ---
             
-            const workImages = [
-                'https://conizm.cc/images/wordrobeimage_1.png',
-                'https://conizm.cc/images/wordrobeimage_2.png',
-                'https://conizm.cc/images/wordrobeimage_3.png'
-            ];
-            
             const sliderContainer = document.getElementById('image-slider-container');
-            let currentSlideIndex = 0;
-            let autoPlayTimer;
+            if (sliderContainer) renderSlider();
             
-            function renderSlider() {
-                let sliderHtml = `
-                    <div 
-                        class="w-full aspect-video bg-[#cfcfcf] mb-8 relative overflow-hidden group select-none"
-                        id="image-slider"
-                    >
-                        <div class="relative w-full h-full" id="slide-images">
-                            ${workImages.map((src, index) => `
-                                <div 
-                                    class="absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out grayscale ${index === currentSlideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}"
-                                    id="slide-${index}"
-                                >
-                                    <img src="${src}" alt="Work slide ${index + 1}" class="w-full h-full object-cover"/>
-                                </div>
-                            `).join('')}
-                        </div>
-
-                        <!-- PC Navigation Arrow -->
-                        <button id="next-slide-btn" class="hidden md:flex absolute top-1/2 right-4 -translate-y-1/2 z-20 text-[#2D2D2D]/60 hover:text-[#2D2D2D] transition-colors p-2" aria-label="Next slide">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                        </button>
-
-                        <!-- Pagination Dots -->
-                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20" id="slide-dots">
-                            ${workImages.map((_, index) => `
-                                <button
-                                    class="w-1.5 h-1.5 rounded-full transition-all duration-500 ${index === currentSlideIndex ? 'bg-[#2D2D2D] scale-125' : 'bg-[#2D2D2D]/40 hover:bg-[#2D2D2D]/60'}"
-                                    data-slide-index="${index}"
-                                    aria-label="Go to slide ${index + 1}"
-                                />
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-                sliderContainer.innerHTML = sliderHtml;
-                setupSliderEvents();
-                startAutoPlay();
-            }
-
-            function goToSlide(index) {
-                currentSlideIndex = index;
-                renderSlider(); // Re-render to update classes/styles
-            }
-
-            function startAutoPlay() {
-                if (autoPlayTimer) clearInterval(autoPlayTimer);
-                autoPlayTimer = setInterval(() => {
-                    currentSlideIndex = (currentSlideIndex + 1) % workImages.length;
-                    renderSlider();
-                }, 6000);
-            }
-
-            function setupSliderEvents() {
-                // Dot clicks
-                document.querySelectorAll('#slide-dots button').forEach(dot => {
-                    dot.addEventListener('click', (e) => {
-                        const index = parseInt(e.target.dataset.slideIndex);
-                        goToSlide(index);
-                        startAutoPlay(); // Reset timer
-                    });
-                });
-
-                // Arrow button (PC only)
-                const nextBtn = document.getElementById('next-slide-btn');
-                if(nextBtn) {
-                    nextBtn.addEventListener('click', () => {
-                        goToSlide((currentSlideIndex + 1) % workImages.length);
-                        startAutoPlay(); // Reset timer
-                    });
-                }
-                
-
-                // Swipe handlers
-                const slider = document.getElementById('image-slider');
-                let touchStartX = null;
-                let touchEndX = null;
-                const minSwipeDistance = 50;
-
-                if (slider) {
-                    slider.addEventListener('touchstart', (e) => {
-                        touchEndX = null;
-                        touchStartX = e.targetTouches[0].clientX;
-                    });
-
-                    slider.addEventListener('touchmove', (e) => {
-                        touchEndX = e.targetTouches[0].clientX;
-                    });
-
-                    slider.addEventListener('touchend', () => {
-                        if (!touchStartX || !touchEndX) return;
-                        const distance = touchStartX - touchEndX;
-                        
-                        if (distance > minSwipeDistance) {
-                            goToSlide((currentSlideIndex + 1) % workImages.length); // Left swipe -> Next
-                        } else if (distance < -minSwipeDistance) {
-                            goToSlide((currentSlideIndex - 1 + workImages.length) % workImages.length); // Right swipe -> Prev
-                        }
-                        startAutoPlay(); // Reset timer
-                        touchStartX = null;
-                        touchEndX = null;
-                    });
-                }
-            }
-
-            renderSlider();
+            // --- Final Initialization ---
+            setLanguage(currentLang);
         });
     </script>
 </body>
