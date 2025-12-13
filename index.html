@@ -158,7 +158,7 @@
     <!-- Mobile Menu Overlay (Hidden by default) -->
     <div 
         id="mobile-menu-overlay"
-        class="fixed top-0 right-0 w-1/2 h-[55vh] bg-[#F7F7F7]/80 backdrop-blur-sm z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-md opacity-0 translate-x-full pointer-events-none"
+        class="fixed top-0 right-0 w-1/2 h-[55vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-md opacity-0 translate-x-full pointer-events-none"
     >
         <a href="#philosophy" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
         <a href="#services" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">DOMAINS</a>
@@ -321,7 +321,7 @@
             
             <div class="flex justify-center gap-8 mb-12">
                 
-                <!-- Contact Icon (Mail - New First Position) -->
+                <!-- Contact Icon (Mail - First Position) -->
                 <button 
                   id="contact-button"
                   class="inline-block hover:opacity-50 transition-opacity"
@@ -329,8 +329,8 @@
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 </button>
-                
-                <!-- Profile Icon (Person) -->
+
+                <!-- Profile Icon (Person - Second Position) -->
                 <button
                     id="profile-button"
                     class="inline-block hover:opacity-50 transition-opacity"
@@ -339,7 +339,7 @@
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </button>
-
+                
                 <!-- Instagram Icon (Last Position) -->
                 <a 
                     href="https://www.instagram.com/conizm_/"
@@ -435,7 +435,7 @@
                 service1_list: 'UI/UXデザイン、デジタルプロトタイプ作成、WEBブラウザアプリ、ゲーム開発（AI実装） etc.',
                 service2_title: 'Visual & Identity', service2_subtitle: 'ブランディングツール / サイン計画',
                 service2_desc_h: '想いの行間を読み、ブランドの世界観を翻訳',
-                service2_desc_p: '流行に左右されない、ブランドの空気感や思想が伝わる「佇まい」をデザインします。名刺やパンフレットなどの手元ツールから、店舗や施設のサイン計画（案内表示）まで、空間におけるグラフィックの在り方も含めてトータルに制作します。',
+                service2_desc_p: '流行に左右されない、ブランドの空気感や思想が伝わる「佇まい」をデザインします。名刺やパンフレットなどの手元ツールから、店舗や施設のサイン計画（案内表示）まで、空間におけるグラフィックの在り方も含めて制作します。',
                 service2_list: 'ブランディングツール（ロゴ、名刺、パンフレット等）、サイン計画、ブランドコンセプト etc.',
                 work_h2: '03 / Featured Work', work_title: 'wordrobe',
                 work_desc: 'あなただけの言葉のワードローブ。英語と日本語のフレーズを保存し、AIが意味を解説。単語帳として必要最低限の機能と装飾で、日常使いするアプリとしてノイズにならないように設計。React / TypeScript / Firebase で構築（AI Assisted）',
@@ -464,7 +464,7 @@
                 work_h2: '03 / Featured Work', work_title: 'wordrobe',
                 work_desc: 'Your personal wordrobe of words. Save English and Japanese phrases, explained by AI. Designed to be minimal in function and decoration, ensuring the app is not a a noise source for daily use. Built with React / TypeScript / Firebase (AI Assisted).',
                 work_category: 'Web Application', work_year: '2025', work_link: 'OPEN APP',
-                mood_en_text: '"Not just designing the visible, but curating the atmosphere itself."<br/> "In the quiet details, we find a timeless resonance."',
+                mood_en_text: 'Not just designing the visible, but curating the atmosphere itself.<br/> In the quiet details, we find a timeless resonance.',
                 mood_text: 'We prioritize serene "Ma" (pause) over deliberate ornamentation, and "Kezhai" (presence) that is loved for a long time over loud assertions.',
                 footer_contact: 'CONTACT', footer_copyright: '© 2025 conizm_', footer_crafting: 'Crafting the invisible.',
                 profile_name: 'Cony', profile_title: 'Graphic & Experience Designer', profile_bg_label: 'Background',
@@ -495,8 +495,8 @@
             
             if (moodEnTextEl && moodJpTextEl) {
                 // Style adjustment for mood EN text
-                // Set to match WORK description text style: font-jp text-xs leading-loose opacity-70 tracking-wide
-                moodEnTextEl.className = 'font-jp text-xs leading-loose opacity-70 tracking-wide mb-8 font-normal md:text-base';
+                // Changed md:text-base to md:text-xs to match WORK description text size
+                moodEnTextEl.className = 'font-jp text-xs leading-loose opacity-70 tracking-wide mb-8 font-normal md:text-xs';
                 
                 if (lang === 'en') {
                     // English mode: Display only the poetic English text
