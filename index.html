@@ -89,10 +89,10 @@
     <!-- Mobile Menu Overlay (Hidden by default) -->
     <div 
         id="mobile-menu-overlay"
-        class="fixed top-0 right-0 w-1/2 h-[50vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-md opacity-0 translate-x-full pointer-events-none"
+        class="fixed top-0 right-0 w-1/2 h-[55vh] bg-[#F7F7F7]/80 backdrop-blur-md z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-md opacity-0 translate-x-full pointer-events-none"
     >
         <a href="#philosophy" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
-        <a href="#services" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
+        <a href="#services" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">DOMAINS</a>
         <a href="#works" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#works')">WORK</a>
         <a href="#contact" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#contact')">CONTACT</a>
         
@@ -133,7 +133,7 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex gap-8 font-mono text-[10px] tracking-widest">
             <a href="#philosophy" class="hover:line-through decoration-[#2D2D2D] transition-all" data-content-key="nav_concept">01 / CONCEPT</a>
-            <a href="#services" class="hover:line-through decoration-[#2D2D2D] transition-all" data-content-key="nav_services">02 / SERVICES</a>
+            <a href="#services" class="hover:line-through decoration-[#2D2D2D] transition-all" data-content-key="nav_services">02 / DOMAINS</a>
             <a href="#works" class="hover:line-through decoration-[#2D2D2D] transition-all" data-content-key="nav_work">03 / WORK</a>
             <a href="#contact" class="hover:line-through decoration-[#2D2D2D] transition-all" data-content-key="nav_contact">04 / CONTACT</a>
         </div>
@@ -158,10 +158,10 @@
     <!-- Mobile Menu Overlay (Hidden by default) -->
     <div 
         id="mobile-menu-overlay"
-        class="fixed top-0 right-0 w-1/2 h-[50vh] bg-[#F7F7F7]/80 backdrop-blur-sm z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-md opacity-0 translate-x-full pointer-events-none"
+        class="fixed top-0 right-0 w-1/2 h-[55vh] bg-[#F7F7F7]/80 backdrop-blur-sm z-40 flex flex-col justify-center items-center gap-2 pt-[90px] transition-all duration-500 md:hidden shadow-xl rounded-l-md opacity-0 translate-x-full pointer-events-none"
     >
         <a href="#philosophy" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#philosophy')">CONCEPT</a>
-        <a href="#services" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">SERVICES</a>
+        <a href="#services" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#services')">DOMAINS</a>
         <a href="#works" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#works')">WORK</a>
         <a href="#contact" class="font-mono text-sm tracking-widest hover:opacity-50 transition-opacity block w-full text-center py-2 text-[#2D2D2D]" onclick="handleMenuClick(event, '#contact')">CONTACT</a>
         
@@ -248,7 +248,7 @@
     <section id="services" class="py-24 px-6 md:px-24 bg-[#EAEAEA]">
         <div class="max-w-4xl mx-auto">
             <div class="mb-16 pt-2 border-t border-[#2D2D2D]">
-                <h2 class="font-mono text-[10px] uppercase tracking-widest" data-content-key="service_h2">02 / Service</h2>
+                <h2 class="font-mono text-[10px] uppercase tracking-widest" data-content-key="service_h2">02 / DOMAINS</h2>
             </div>
             
             <div class="grid grid-cols-1 gap-12" id="service-container">
@@ -321,7 +321,16 @@
             
             <div class="flex justify-center gap-8 mb-12">
                 
-                <!-- Profile Icon (Opens Profile Modal) -->
+                <!-- Contact Icon (Mail - New First Position) -->
+                <button 
+                  id="contact-button"
+                  class="inline-block hover:opacity-50 transition-opacity"
+                  aria-label="Contact Form"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </button>
+                
+                <!-- Profile Icon (Person) -->
                 <button
                     id="profile-button"
                     class="inline-block hover:opacity-50 transition-opacity"
@@ -331,7 +340,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </button>
 
-                <!-- Instagram Icon -->
+                <!-- Instagram Icon (Last Position) -->
                 <a 
                     href="https://www.instagram.com/conizm_/"
                     target="_blank"
@@ -342,14 +351,6 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.5" y1="6.5" y2="6.5"/></svg>
                 </a>
                 
-                <!-- Contact Icon -->
-                <button 
-                  id="contact-button"
-                  class="inline-block hover:opacity-50 transition-opacity"
-                  aria-label="Contact Form"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                </button>
 
             </div>
             
@@ -422,20 +423,20 @@
 
         const content = {
             'ja': {
-                nav_concept: '01 / CONCEPT', nav_services: '02 / SERVICES', nav_work: '03 / WORK', nav_contact: '04 / CONTACT',
+                nav_concept: '01 / CONCEPT', nav_services: '02 / DOMAINS', nav_work: '03 / WORK', nav_contact: '04 / CONTACT',
                 lang_jp: 'JP', lang_en: 'EN',
                 concept_h2: '01 / Concept', concept_main: 'Crafting the invisible.',
                 concept_text_p1: 'かたちあるものの奥に、 本当につくりたい「気配」が潜んでいる。画面の中のピクセルも、空間を満たす素材も。 手段にとらわれず、その場所にあるべき空気を編集する。',
                 concept_text_p2: 'conizm_ がつくるのは、 完結した静止画ではなく、 次へと続く「間」のあるデザイン。流行を追うのではなく、 どんな世界観にも静かに馴染む、 オーセンティックな佇まいを築きます。',
-                service_h2: '02 / Service',
+                service_h2: '02 / DOMAINS',
                 service1_title: 'Interactive & Experience', service1_subtitle: 'WEBアプリケーション開発 / UI/UX設計',
                 service1_desc_h: 'AI技術を活用して、心地よいUI体験の設計を',
-                service1_desc_p: 'インテリアデザインで培った「人が快適に感じる距離感や配置」の感覚を、デジタル空間（UI/UX）に応用。AI技術をコーディングに活用することで、アイディアを迅速にアプリとして実装します。機能性だけでなく、触っていて気持ちの良い、体温のあるデジタルプロダクトを目指します。',
-                service1_list: 'WEBブラウザアプリ開発（AI実装）、UI/UXデザイン、デジタルプロトタイプ作成 etc.',
+                service1_desc_p: '空間デザインの経験で培った「人が快適に感じる距離感や配置」の感覚を、デジタル空間（UI/UX）に応用。AI技術をコーディングに活用することで、アイディアを迅速に実装します。機能性だけでなく、触っていて気持ちの良い、体温のあるプロダクトを目指します。',
+                service1_list: 'UI/UXデザイン、デジタルプロトタイプ作成、WEBブラウザアプリ、ゲーム開発（AI実装） etc.',
                 service2_title: 'Visual & Identity', service2_subtitle: 'ブランディングツール / サイン計画',
-                service2_desc_h: '紙媒体〜サイン計画まで、ブランドの世界観を翻訳',
-                service2_desc_p: '流行に左右されない、ブランドの空気感や思想が伝わる「佇まい」をデザインします。名刺やパンフレットなどの手元ツールから、店舗や施設のサイン計画（案内表示）まで、空間におけるグラフィックの在り方も含めてトータルに提案します。',
-                service2_list: 'ブランディングツール（ロゴ、名刺、チラシ、パンフレット等）、サイン計画（案内・誘導） etc.',
+                service2_desc_h: '想いの行間を読み、ブランドの世界観を翻訳',
+                service2_desc_p: '流行に左右されない、ブランドの空気感や思想が伝わる「佇まい」をデザインします。名刺やパンフレットなどの手元ツールから、店舗や施設のサイン計画（案内表示）まで、空間におけるグラフィックの在り方も含めてトータルに制作します。',
+                service2_list: 'ブランディングツール（ロゴ、名刺、パンフレット等）、サイン計画、ブランドコンセプト etc.',
                 work_h2: '03 / Featured Work', work_title: 'wordrobe',
                 work_desc: 'あなただけの言葉のワードローブ。英語と日本語のフレーズを保存し、AIが意味を解説。単語帳として必要最低限の機能と装飾で、日常使いするアプリとしてノイズにならないように設計。React / TypeScript / Firebase で構築（AI Assisted）',
                 work_category: 'Web Application', work_year: '2025', work_link: 'OPEN APP',
@@ -446,20 +447,20 @@
                 profile_desc: '大学卒業後、空間デザイン事務所に勤務。その後、インハウスのグラフィックデザイナーとしての経験を経て、2023年よりフリーランス。Digital-Physical（Web, Print, and Space）を横断し、「人が心地よいと感じる」体験を設計・具現化することを目指しています。',
             },
             'en': {
-                nav_concept: '01 / CONCEPT', nav_services: '02 / SERVICES', nav_work: '03 / WORK', nav_contact: '04 / CONTACT',
+                nav_concept: '01 / CONCEPT', nav_services: '02 / DOMAINS', nav_work: '03 / WORK', nav_contact: '04 / CONTACT',
                 lang_jp: 'JP', lang_en: 'EN',
                 concept_h2: '01 / Concept', concept_main: 'Crafting the invisible.',
                 concept_text_p1: 'Deep within visible forms lies the true presence we aim to create. From pixels on a screen to materials in a room. Unbound by medium, we shape the very atmosphere of the space.',
                 concept_text_p2: 'conizm_ creates not static conclusions, but designs imbued with "Ma"— the intentional pause that invites what comes next. Beyond fleeting trends, we build an authentic presence that quietly harmonizes with any world.',
-                service_h2: '02 / Service',
+                service_h2: '02 / DOMAINS',
                 service1_title: 'Interactive & Experience', service1_subtitle: 'WEB Application Development / UI/UX Design',
                 service1_desc_h: 'Leveraging AI technology to design comfortable UI experiences',
                 service1_desc_p: 'Applying the sense of "distance and placement where people feel comfortable" cultivated in interior design to digital spaces (UI/UX). Utilizing AI technology in coding, we rapidly implement ideas as applications. We aim for digital products that are not only functional but also tactile and warm to use.',
-                service1_list: 'WEB browser app development (AI implementation), UI/UX design, digital prototype creation etc.',
+                service1_list: 'UI/UX design, digital prototype creation, WEB browser app, game development (AI implementation) etc.',
                 service2_title: 'Visual & Identity', service2_subtitle: 'Branding Tools / Sign Planning',
                 service2_desc_h: 'Translating brand identity from print media to signage planning',
                 service2_desc_p: 'We design a "presence" that quietly communicates the brand\'s philosophy, rather than chasing fleeting trends. We offer total proposals, covering everything from handheld tools like business cards and brochures to spatial graphic design, including signage planning for stores and facilities.',
-                service2_list: 'Branding tools (logo, business cards, flyers, brochures, etc.), signage planning (guidance/navigation) etc.',
+                service2_list: 'Branding tools (logo, business cards, flyers, brochures, etc.), signage planning, brand concept etc.',
                 work_h2: '03 / Featured Work', work_title: 'wordrobe',
                 work_desc: 'Your personal wordrobe of words. Save English and Japanese phrases, explained by AI. Designed to be minimal in function and decoration, ensuring the app is not a a noise source for daily use. Built with React / TypeScript / Firebase (AI Assisted).',
                 work_category: 'Web Application', work_year: '2025', work_link: 'OPEN APP',
@@ -922,4 +923,3 @@
     </script>
 </body>
 </html>
-
