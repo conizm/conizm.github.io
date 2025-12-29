@@ -430,7 +430,8 @@
 
     <script>
         window.submitted = false;
-        let currentLang = 'ja';
+        const userLocale = navigator.language || navigator.userLanguage;
+        let currentLang = userLocale.startsWith('ja') ? 'ja' : 'en';
 
         const content = {
             'ja': {
@@ -484,6 +485,7 @@
         };
 
         const updateContent = (lang) => {
+            document.documentElement.lang = lang;
             const data = content[lang];
 
             // 1. Navigation & Headers
